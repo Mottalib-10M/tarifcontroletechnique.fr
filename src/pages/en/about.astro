@@ -1,0 +1,26 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { LAST_UPDATED, AUTHOR_NAME, CONTACT_EMAIL, AUTHOR_ROLE } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { personSchema, organizationSchema, breadcrumbSchema, profilePageSchema } from '../../lib/seo';
+import { displayDate, formatNumber } from '../../lib/format';
+import S from '../../data/ct/stats.json';
+const lang = 'en';
+---
+<PageLayout title="Tarif CT: who compares French contrôle technique prices" description="Who publishes Tarif CT, why a neutral comparison of French contrôle technique prices, where the prices of 6,000 centres come from and how to report a wrong one." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">About Tarif CT</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
+    <p>Tarif CT is published by Radif Partners. It answers a question hundreds of thousands of drivers and riders in France ask every month: what does the contrôle technique, the compulsory roadworthiness test, cost near me, and where is the cheapest?</p>
+    <h2>Why this site exists</h2>
+    <p>On that question the top results are an official map that lists centres without working out any average or explaining the re-inspection, booking sites that only show their partner centres, and articles still quoting a “national average” from 2018 or 2019 studies. This site does better than the top Google result because it works out, every day, the median for your town and your département from the public price file, shows the re-inspection and the date of every price, and ranks centres by price, with no partnerships.</p>
+    <h2>Where the figures come from</h2>
+    <p>Every approved centre declares its prices to the authorities, who publish them in the “Prix des contrôles techniques” dataset on data.gouv.fr under the Licence Ouverte 2.0. A script reads that file every day ({formatNumber(S.meta.lignes, 0, 'en')} lines, {formatNumber(S.national.centres, 0, 'en')} centres at the last reading), sets aside implausible entries, works out the medians and republishes the site. The date rules (first test, re-inspection, two-wheelers) come from the Service Public guidance pages and the Highway Code. Everything is set out in the <a href={route('method', lang)}>method</a>.</p>
+    <h2>What we are not</h2>
+    <p>Radif Partners is not a government body, nor the DGCCRF, nor a network of inspection centres, nor a broker. We take no bookings, receive no commission, sell no place in the list and ask for no contact details. The price displayed at the centre on the day of the test is what counts.</p>
+    <h2>Funding and data</h2><p>The site is free and needs no sign-up. Town searches run in your browser, on files published by the site itself: nothing you type is sent anywhere else. If it ever carries advertising, it will never sit above the tool or pass for a recommendation, and no centre will be able to pay to move up the list.</p>
+    <h2>Why an English version</h2><p>Every page exists in English for people who have moved to France and are meeting the contrôle technique, the contre-visite and box B of the carte grise for the first time: the French terms are explained, prices stay in euros.</p>
+    <h2>Write to us</h2><p>A price that does not match a centre’s display, a centre that has closed, a date rule that has changed: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. See also the <a href={route('editorial', lang)}>editorial policy</a> and the <a href={route('terms', lang)}>legal notice</a>.</p>
+    <p class="text-sm text-navy-600">Price file of <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>.</p>
+  </div>
+</PageLayout>

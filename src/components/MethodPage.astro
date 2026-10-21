@@ -1,0 +1,108 @@
+---
+/** Méthode et sources (page de confiance, RECETTE §8.2) : données, traitements, règles de date, tests, limites, mises à jour. */
+import PageLayout from '../layouts/PageLayout.astro';
+import { route, type Locale } from '../i18n/routes';
+import { P } from '../lib/engine/params';
+import * as M from '../lib/engine/index';
+import { formatMoney, formatPercent, formatNumber, displayDate } from '../lib/format';
+import { breadcrumbSchema, webPageSchema } from '../lib/seo';
+import { LAST_UPDATED, CONTACT_EMAIL } from '../data/site-config';
+import S from '../data/ct/stats.json';
+import H from '../data/ct/historique.json';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const fr = lang === 'fr';
+const tag = fr ? 'fr-FR' : 'en-GB';
+const $ = (n: number) => formatMoney(n, Number.isInteger(n) ? 0 : 2, lang);
+const pc = (x: number) => formatPercent(x, 0, lang);
+const n0 = (x: number) => formatNumber(x, 0, lang);
+const d = (iso: string) => displayDate(iso, tag);
+const title = fr ? 'Méthode : d’où viennent les prix du contrôle technique' : 'Method: where the contrôle technique prices come from';
+const description = fr ? 'Méthode du comparateur : fichier DGCCRF relu chaque jour, saisies aberrantes écartées, médianes par commune et département, règles de date, tests et limites.' : 'How the price finder works: the DGCCRF price file read daily, implausible entries filtered, medians by town and département, date rules, tests and known limits.';
+const h1 = fr ? 'Méthode et sources' : 'Method and sources';
+const path = route('method', lang);
+const sources = Object.values(P.sources);
+const N = S.national, m = S.meta;
+const ex1 = M.premierControleVoiture('2022-03-15');
+const ex2 = M.apresDefavorable('2026-01-15', 'S');
+const ex3 = M.premierControleDeuxRoues('2023-03-11');
+const premier = H[0];
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: h1, description, path, lang }), breadcrumbSchema([{ name: fr ? 'Accueil' : 'Home', path: route('home', lang) }, { name: h1, path }])]} breadcrumbs={[{ label: h1 }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">{h1}</h1></header>
+  {fr ? (
+  <div class="prose prose-slate max-w-none">
+    <p>Tout le site repose sur un seul fichier : le jeu de données « Prix des contrôles techniques », dans lequel chaque centre agréé déclare ses tarifs et que l’administration publie sur data.gouv.fr sous Licence Ouverte 2.0. Aucun prix n’est tapé à la main dans une page : les textes citent les chiffres que calcule le script de mise à jour, et changent avec eux.</p>
+    <h2>Le fichier des prix</h2>
+    <p>Chaque ligne du fichier correspond à un centre, une catégorie de véhicule et une énergie : nom et adresse du centre, coordonnées, prix de la visite, prix minimum et maximum de la contre-visite, date d’application du tarif et date de dernière mise à jour de la fiche. Le dernier fichier lu date du <time datetime={m.fichier}>{d(m.fichier)}</time> : {n0(m.lignes)} lignes, {n0(N.centres)} centres, dont {n0(N.centresVp)} qui contrôlent les voitures et {n0(N.centresMoto)} les motos. Le script <code>scripts/update-data.mjs</code> le télécharge chaque jour, refuse un fichier de moins de 50 000 lignes (un téléchargement coupé ne remplace jamais le précédent), puis écrit les statistiques lues par les pages.</p>
+    <h2>Les saisies écartées</h2>
+    <p>Quelques centres saisissent des prix invraisemblables : un contrôle à 1 €, un autre à 999 €. Une ligne dont le prix de visite sort de la fourchette de {$(P.plausible.min)} à {$(P.plausible.max)} est écartée des médianes et de la liste, et comptée : {n0(m.aberrants)} lignes au dernier relevé. Les prix de contre-visite à 0 € sont gardés, parce qu’une contre-visite gratuite est une pratique réelle.</p>
+    <h2>Médianes, moyennes et centres les moins chers</h2>
+    <p>Pour chaque commune, chaque département et la France, le script calcule le nombre de centres, la moyenne, la médiane, les premier et dernier déciles, le minimum et le maximum, véhicule par véhicule. La médiane est le chiffre mis en avant : la moitié des centres sont moins chers, la moitié plus chers, et quelques tarifs extrêmes ne la déplacent pas. Médiane nationale d’un contrôle de voiture essence au dernier relevé : {$(N.s.e.med)} (moyenne {$(N.s.e.moy)}).</p>
+    <h2>Les centres autour d’une commune</h2>
+    <p>Les communes, leurs codes postaux et leurs coordonnées viennent de l’API Découpage administratif. L’outil mesure la distance à vol d’oiseau entre le centre de la commune et chaque centre de contrôle, garde ceux du rayon choisi et, s’il y en a moins de cinq, élargit jusqu’aux cinq plus proches. Un centre appartient à une commune s’il a l’un de ses codes postaux et un nom de commune identique (« Paris 11e » compte pour Paris). {n0(N.sansGeo)} centres du fichier n’ont pas de coordonnées : ils comptent dans les statistiques du département, pas dans la recherche par distance.</p>
+    <p>Le fichier complet des centres et celui des communes sont publiés par ce site et chargés par votre navigateur à la première recherche : la commune que vous tapez ne quitte pas votre appareil.</p>
+    <h2>Les règles de date</h2>
+    <p>Les mini-simulateurs appliquent les règles des fiches Service Public, reportées dans <code>src/data/params-2026.json</code> et rejouées par les tests sur les exemples des fiches :</p>
+    <ul>
+      <li>voiture et camionnette : premier contrôle dans les {n0(P.voiture.fenetre_avant_mois)} mois avant le {n0(P.voiture.premier_controle_ans)}e anniversaire de la mise en circulation, puis tous les {n0(P.voiture.validite_favorable_ans)} ans. Exemple : mise en circulation le 15 mars 2022, contrôle entre le {d(ex1.debut)} et le {d(ex1.fin)} ;</li>
+      <li>contre-visite : dans les {n0(P.voiture.delai_contre_visite_mois)} mois. Exemple : contrôle défavorable le 15 janvier 2026, contre-visite au plus tard le {d(ex2.contreVisiteAvant)} ;</li>
+      <li>deux-roues, tricycles et quadricycles : immatriculés depuis 2022, premier contrôle dans les 6 mois avant le {n0(P.deux_roues.premier_controle_ans_depuis_2022)}e anniversaire, puis tous les {n0(P.deux_roues.validite_favorable_ans)} ans. Exemple : mise en circulation le 11 mars 2023, contrôle avant le {d(ex3.fin)} ; immatriculés en 2020 ou 2021 : dans les {n0(P.deux_roues.immat_2020_2021_mois_apres_anniversaire)} mois après la date anniversaire de 2026 ;</li>
+      <li>véhicule de collection : tous les {n0(P.collection.periodicite_ans)} ans, dispense avant le 1er janvier {P.collection.dispense_avant_annee} ;</li>
+      <li>cession d’occasion : l’acheteur reçoit un procès-verbal daté de {n0(P.voiture.vente_ct_moins_de_mois)} mois au plus dès que la voiture a {n0(P.voiture.vente_age_min_ans)} ans, sauf si elle est cédée à un garagiste ou à un négociant.</li>
+    </ul>
+    <h2>Les tests</h2>
+    <p>Chaque mise à jour lance les tests du moteur : les exemples datés des fiches Service Public, la fin de mois (un 31 qui devient le 30 ou le 28), le calendrier des deux-roues selon l’année, et la cohérence entre le fichier de statistiques et les fonctions de calcul. Un test qui échoue bloque la publication : le site garde alors la version de la veille.</p>
+    <h2>Ce que le site ne fait pas</h2>
+    <ul>
+      <li>Il ne publie pas le prix du contrôle pollution complémentaire des camionnettes, ni celui des poids lourds : le fichier ne les contient pas.</li>
+      <li>Il ne vérifie pas que le prix déclaré est celui de l’affichage : {pc(N.jamaisDepuis2020)} des centres n’ont pas mis à jour leur fiche depuis 2020. Les tarifs de plus de trois ans sont signalés.</li>
+      <li>Pour les deux-roues mis en circulation avant 2017, il indique seulement que le premier contrôle est déjà dû : nous n’avons pas pu relire sur une source officielle accessible la date exacte de 2024 qui s’appliquait.</li>
+      <li>Il ne prend aucun rendez-vous et ne connaît pas les horaires des centres.</li>
+      <li>La distance est mesurée à vol d’oiseau, pas par la route.</li>
+    </ul>
+    <h2>Mises à jour</h2>
+    <p>Prix : chaque jour, par une tâche planifiée qui télécharge le fichier, rejoue les tests, reconstruit le site et le republie. Historique des médianes nationales, un point par jour depuis le {d(premier.date)} : <code>src/data/ct/historique.json</code>. Règles de date : à chaque modification des fiches Service Public. Une erreur signalée à <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> est vérifiée sur la source, corrigée et transformée en test. Voir la <a href={route('editorial', lang)}>charte éditoriale</a>.</p>
+    <h2>Toutes les sources</h2>
+    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.fr}</a></li>)}</ul>
+    <p class="text-sm text-navy-600">Fichier des prix du <time datetime={LAST_UPDATED}>{d(LAST_UPDATED)}</time> · règles relues le <time datetime={P.retrieved_at}>{d(P.retrieved_at)}</time>.</p>
+  </div>
+  ) : (
+  <div class="prose prose-slate max-w-none">
+    <p>The whole site rests on one file: the “Prix des contrôles techniques” dataset, in which every approved centre declares its prices and which the authorities publish on data.gouv.fr under the Licence Ouverte 2.0. No price is typed by hand into a page: the texts quote the figures worked out by the update script, and change with them.</p>
+    <h2>The price file</h2>
+    <p>Each line of the file is one centre, one vehicle category and one fuel: the centre’s name and address, coordinates, test price, lowest and highest re-inspection price, the date the price took effect and the date the record was last updated. The last file read is dated <time datetime={m.fichier}>{d(m.fichier)}</time>: {n0(m.lignes)} lines, {n0(N.centres)} centres, of which {n0(N.centresVp)} test cars and {n0(N.centresMoto)} test motorcycles. The script <code>scripts/update-data.mjs</code> downloads it every day, rejects any file under 50,000 lines (a cut-off download never replaces the previous one), then writes the statistics the pages read.</p>
+    <h2>Entries set aside</h2>
+    <p>A few centres enter implausible prices: a test at €1, another at €999. A line whose test price falls outside {$(P.plausible.min)} to {$(P.plausible.max)} is left out of the medians and the list, and counted: {n0(m.aberrants)} lines at the last reading. Re-inspection prices of €0 are kept, because a free re-check is a real practice.</p>
+    <h2>Medians, averages and cheapest centres</h2>
+    <p>For each town, each département and France, the script works out the number of centres, the average, the median, the first and last deciles, the minimum and the maximum, vehicle by vehicle. The median is the headline figure: half the centres are cheaper, half dearer, and a few extreme prices do not shift it. National median for a petrol car test at the last reading: {$(N.s.e.med)} (average {$(N.s.e.moy)}).</p>
+    <h2>Centres around a town</h2>
+    <p>Towns, their postcodes and coordinates come from the administrative boundaries API. The tool measures the straight-line distance from the centre of the town to each inspection centre, keeps those within the chosen radius and, if there are fewer than five, widens to the five nearest. A centre belongs to a town if it has one of its postcodes and the same town name (“Paris 11e” counts as Paris). {n0(N.sansGeo)} centres in the file have no coordinates: they count in their département’s statistics, not in the distance search.</p>
+    <p>The full centre file and the town file are published by this site and loaded by your browser at the first search: the town you type never leaves your device.</p>
+    <h2>Date rules</h2>
+    <p>The mini calculators apply the rules of the Service Public guidance pages, recorded in <code>src/data/params-2026.json</code> and replayed by the tests on the pages’ own examples:</p>
+    <ul>
+      <li>car and van: first test in the {n0(P.voiture.fenetre_avant_mois)} months before the {n0(P.voiture.premier_controle_ans)}th anniversary of first registration, then every {n0(P.voiture.validite_favorable_ans)} years. Example: first registered on 15 March 2022, test between {d(ex1.debut)} and {d(ex1.fin)};</li>
+      <li>re-inspection: within {n0(P.voiture.delai_contre_visite_mois)} months. Example: failed test on 15 January 2026, re-inspection by {d(ex2.contreVisiteAvant)};</li>
+      <li>two-wheelers, trikes and quads: registered from 2022, first test in the 6 months before the {n0(P.deux_roues.premier_controle_ans_depuis_2022)}th anniversary, then every {n0(P.deux_roues.validite_favorable_ans)} years. Example: first registered on 11 March 2023, test by {d(ex3.fin)}; registered in 2020 or 2021: within {n0(P.deux_roues.immat_2020_2021_mois_apres_anniversaire)} months after the 2026 anniversary date;</li>
+      <li>classic vehicle: every {n0(P.collection.periodicite_ans)} years, exempt if first registered before 1 January {P.collection.dispense_avant_annee};</li>
+      <li>sale: a test under {n0(P.voiture.vente_ct_moins_de_mois)} months old for a vehicle over {n0(P.voiture.vente_age_min_ans)} years old, unless sold to a trader.</li>
+    </ul>
+    <h2>Tests</h2>
+    <p>Each update runs the engine’s tests: the dated examples from the Service Public pages, month ends (a 31st that becomes the 30th or 28th), the two-wheeler timetable by year, and the consistency between the statistics file and the calculation functions. A failing test blocks publication: the site then keeps the previous day’s version.</p>
+    <h2>What the site does not do</h2>
+    <ul>
+      <li>It does not publish the price of the extra emissions check for vans, nor heavy-vehicle prices: the file does not contain them.</li>
+      <li>It does not check that the declared price matches the centre’s display: {pc(N.jamaisDepuis2020)} of centres have not updated their record since 2020. Prices more than three years old are flagged.</li>
+      <li>For two-wheelers first registered before 2017 it only says the first test is already due: we could not reread on an accessible official source the exact 2024 date that applied.</li>
+      <li>It takes no bookings and does not know centres’ opening hours.</li>
+      <li>Distance is measured as the crow flies, not by road.</li>
+    </ul>
+    <h2>Updates</h2>
+    <p>Prices: every day, by a scheduled job that downloads the file, replays the tests, rebuilds the site and republishes it. History of national medians, one point a day since {d(premier.date)}: <code>src/data/ct/historique.json</code>. Date rules: whenever the Service Public pages change. An error reported to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> is checked against the source, corrected and turned into a test. See the <a href={route('editorial', lang)}>editorial policy</a>.</p>
+    <h2>All sources</h2>
+    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.en}</a></li>)}</ul>
+    <p class="text-sm text-navy-600">Price file of <time datetime={LAST_UPDATED}>{d(LAST_UPDATED)}</time> · rules reread on <time datetime={P.retrieved_at}>{d(P.retrieved_at)}</time>.</p>
+  </div>
+  )}
+</PageLayout>

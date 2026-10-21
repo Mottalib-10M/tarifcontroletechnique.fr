@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Contact – ${SITE_NAMES[lang]}`} description="Write to the publisher of Tarif CT: report a price that does not match a centre’s display, a closed centre, a question on the method, or embed the price finder." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Contact</h1>
+    <p>One address, read every week: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. There is no phone line and we call nobody back: this site sells nothing.</p>
+    <h2>Report an error</h2>
+    <p>For a price, give the centre, its town and the price displayed at its desk or on its website. We do not edit the government file: a confirmed gap is reported, and the centre can update its declaration. For a date rule, attach the Service Public page or text that contradicts it. For a calculation, paste the tool’s share link: it carries your choices, nothing else. The procedure is in the <a href={route('editorial', lang)}>editorial policy</a>.</p>
+    <h2>What we cannot do</h2>
+    <p>We take no bookings and do not know centres’ availability: contact the centre you choose directly. We have no access to any test report or vehicle history; for the latter, the Interior Ministry’s free HistoVec service provides it. To dispute a result, go to the centre first, then to the prefecture.</p>
+    <h2>Embed the price finder</h2>
+    <p>Drivers’ associations, motorcycle clubs, local newsrooms: the town-by-town price finder can be embedded free as an iframe. The code is on the <a href={route('widget', lang)}>embed page</a>.</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>{AUTHOR_NAME} is responsible for Tarif CT’s content; full identity in the <a href={route('terms', lang)}>legal notice</a>. Page reviewed on {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

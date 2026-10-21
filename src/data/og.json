@@ -1,0 +1,20 @@
+{
+ "accent": "#1F4E9A",
+ "symbol": "CT",
+ "variants": [
+  {
+   "file": "og-fr.png",
+   "title": "Prix du contrôle technique\ncentre par centre",
+   "subtitle": "Commune · Département · Contre-visite · Moto",
+   "badge": "Tarifs déclarés à la DGCCRF, relus chaque jour",
+   "brand": "Tarif CT"
+  },
+  {
+   "file": "og-en.png",
+   "title": "Contrôle technique prices\ncentre by centre",
+   "subtitle": "Town · Département · Re-inspection · Motorcycle",
+   "badge": "Prices declared to the DGCCRF, read every day",
+   "brand": "Tarif CT"
+  }
+ ]
+}

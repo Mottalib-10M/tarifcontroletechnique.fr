@@ -1,0 +1,166 @@
+{
+  "_lisezmoi": "Règles du contrôle technique des véhicules légers (catégories M1, N1 et L) appliquées par le moteur, lues sur les fiches Service Public vérifiées le 1er janvier 2026 (M1, N1, L, collection), le 23 janvier 2026 (dispenses) et le 23 janvier 2025 (vente), relevées le 2026-10-21. Les prix ne sont PAS ici : ils sont libres, déclarés par chaque centre à la DGCCRF et relus chaque jour par scripts/update-data.mjs (src/data/ct/stats.json). Les exemples datés des fiches sont des tests (src/lib/engine/ct.test.ts).",
+  "year": 2026,
+  "retrieved_at": "2026-10-21",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "voiture": {
+    "premier_controle_ans": 4,
+    "fenetre_avant_mois": 6,
+    "validite_favorable_ans": 2,
+    "validite_defavorable_majeure_mois": 2,
+    "delai_contre_visite_mois": 2,
+    "pollution_camionnette_mois_avant": 2,
+    "vente_ct_moins_de_mois": 6,
+    "vente_age_min_ans": 4
+  },
+  "deux_roues": {
+    "debut_obligation": "2024-04-15",
+    "premier_controle_ans_depuis_2022": 5,
+    "fenetre_avant_mois": 6,
+    "immat_2020_2021_mois_apres_anniversaire": 4,
+    "immat_2020_2021_limite": "2026-12-31",
+    "immat_2017_2019_annee": 2025,
+    "validite_favorable_ans": 3,
+    "vente_age_min_ans": 5
+  },
+  "collection": {
+    "periodicite_ans": 5,
+    "dispense_avant_annee": 1960,
+    "age_min_ans": 30
+  },
+  "sanctions": {
+    "amende_forfaitaire": 135,
+    "amende_max": 750,
+    "fiche_circulation_jours": 7
+  },
+  "points_controle": {
+    "voiture": 133,
+    "deux_roues": 80
+  },
+  "plausible": {
+    "min": 30,
+    "max": 250
+  },
+  "sources": {
+    "dataset": {
+      "url": "https://www.data.gouv.fr/datasets/prix-des-controles-techniques",
+      "label": {
+        "fr": "data.gouv.fr : Prix des contrôles techniques (DGCCRF, Licence Ouverte 2.0, mis à jour chaque jour)",
+        "en": "data.gouv.fr: Contrôle technique prices (DGCCRF open data, Licence Ouverte 2.0, updated daily)"
+      }
+    },
+    "prixConso": {
+      "url": "https://prix.conso.gouv.fr/controle-technique/",
+      "label": {
+        "fr": "prix.conso.gouv.fr : recherche officielle des centres et de leurs tarifs",
+        "en": "prix.conso.gouv.fr: official search of approved centres and their prices"
+      }
+    },
+    "spVoiture": {
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33354",
+      "label": {
+        "fr": "Service Public : contrôle technique d'une voiture (catégorie M1)",
+        "en": "Service Public: contrôle technique of a car (category M1)"
+      }
+    },
+    "spDeuxRoues": {
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F37538",
+      "label": {
+        "fr": "Service Public : contrôle technique d'un 2, 3 roues ou quadricycle à moteur (catégorie L)",
+        "en": "Service Public: contrôle technique of motorcycles, scooters and quads (category L)"
+      }
+    },
+    "spCamionnette": {
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33353",
+      "label": {
+        "fr": "Service Public : contrôle technique d'une camionnette (catégorie N1)",
+        "en": "Service Public: contrôle technique of a light van (category N1)"
+      }
+    },
+    "spVente": {
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F16540",
+      "label": {
+        "fr": "Service Public : vendre un véhicule d'occasion sans contrôle technique ?",
+        "en": "Service Public: selling a used vehicle without a contrôle technique"
+      }
+    },
+    "spCollection": {
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F328",
+      "label": {
+        "fr": "Service Public : contrôle technique d'un véhicule de collection",
+        "en": "Service Public: contrôle technique of a classic (collection) vehicle"
+      }
+    },
+    "spDispense": {
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2880",
+      "label": {
+        "fr": "Service Public : contrôle technique obligatoire ou dispense ?",
+        "en": "Service Public: which vehicles must pass a contrôle technique"
+      }
+    },
+    "codeR323": {
+      "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074228/LEGISCTA000006177155",
+      "label": {
+        "fr": "Code de la route, article R323-22 : périodicité du contrôle technique",
+        "en": "French Highway Code, article R323-22: inspection intervals"
+      }
+    },
+    "codeR323Prix": {
+      "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006177154",
+      "label": {
+        "fr": "Code de la route, articles R323-6 à R323-21 (obligations de prix des centres, R323-13-1)",
+        "en": "French Highway Code, articles R323-6 to R323-21 (centres' price duties, R323-13-1)"
+      }
+    },
+    "arretePrix": {
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000042185178",
+      "label": {
+        "fr": "Arrêté du 29 juillet 2020 relatif à la publicité des prix des prestations de contrôle technique",
+        "en": "Order of 29 July 2020 on the display of contrôle technique prices"
+      }
+    },
+    "arrete1991": {
+      "url": "https://www.legifrance.gouv.fr/loda/id/LEGITEXT000020559004/",
+      "label": {
+        "fr": "Arrêté du 18 juin 1991 relatif au contrôle technique des véhicules de 3,5 tonnes au plus",
+        "en": "Order of 18 June 1991 on the inspection of vehicles up to 3.5 tonnes"
+      }
+    },
+    "decret2025": {
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000053000944",
+      "label": {
+        "fr": "Décret n° 2025-1180 du 8 décembre 2025 (rappels graves et contrôle technique périodique)",
+        "en": "Decree 2025-1180 of 8 December 2025 (serious recalls and periodic inspection)"
+      }
+    },
+    "dgccrf": {
+      "url": "https://www.economie.gouv.fr/dgccrf/le-site-vous-informant-sur-le-prix-des-controles-techniques-evolue",
+      "label": {
+        "fr": "DGCCRF : le site qui informe sur le prix des contrôles techniques évolue",
+        "en": "DGCCRF: the site on contrôle technique prices is changing"
+      }
+    },
+    "geoApi": {
+      "url": "https://geo.api.gouv.fr/decoupage-administratif/communes",
+      "label": {
+        "fr": "API Découpage administratif (geo.api.gouv.fr) : communes, codes postaux et coordonnées",
+        "en": "French administrative boundaries API (geo.api.gouv.fr): towns, postcodes, coordinates"
+      }
+    },
+    "histovec": {
+      "url": "https://histovec.interieur.gouv.fr/",
+      "label": {
+        "fr": "HistoVec : historique administratif d'un véhicule (ministère de l'Intérieur)",
+        "en": "HistoVec: administrative history of a vehicle (Ministry of the Interior)"
+      }
+    },
+    "spCession": {
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F1707",
+      "label": {
+        "fr": "Service Public : vendre ou donner son véhicule (contrôle de moins de 6 mois, contre-visite)",
+        "en": "Service Public: selling or giving away a vehicle (test under 6 months old, re-inspection)"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'fr';
+---
+<PageLayout title={`Charte éditoriale – ${SITE_NAMES[lang]}`} description="D’où viennent les prix du contrôle technique publiés ici, qui en répond, à quel rythme ils sont relus, et ce qui se passe quand un prix ou une règle de date est signalé faux." lang={lang} noindex={true} breadcrumbs={[{ label: 'Charte éditoriale' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Charte éditoriale et politique de correction</h1>
+    <p>Un prix périmé envoie un automobiliste dans un centre plus cher qu’annoncé ; une date de contre-visite fausse lui fait repasser un contrôle complet. Voici d’où viennent nos données et ce que nous faisons quand l’une d’elles est fausse.</p>
+    <h2>Responsabilité</h2><p>{AUTHOR_NAME} répond de chaque médiane affichée, de chaque règle de date et de chaque calcul des outils. Un prix ou une règle qui ne correspond pas à la source se signale à <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Sources primaires uniquement</h2>
+    <ul>
+      <li><strong>le fichier « Prix des contrôles techniques »</strong> publié sur data.gouv.fr, où chaque centre déclare ses tarifs (Licence Ouverte 2.0) ;</li>
+      <li><strong>les fiches de Service Public</strong> sur le contrôle technique des voitures, des camionnettes, des deux-roues et des véhicules de collection, et sur la vente d’un véhicule d’occasion ;</li>
+      <li><strong>le code de la route et les arrêtés</strong> publiés sur Légifrance (périodicité, affichage des prix) ;</li>
+      <li><strong>l’API Découpage administratif</strong> pour les communes, codes postaux et coordonnées.</li>
+    </ul>
+    <p>Aucun prix n’est repris d’un comparateur, d’un réseau de centres ou d’un forum. Un prix que le fichier ne contient pas (le contrôle pollution complémentaire des camionnettes, par exemple) n’est pas publié.</p>
+    <h2>Des prix déclarés, jamais des devis</h2><p>Chaque prix est celui que le centre a déclaré, avec sa date. Nous n’en inventons aucun, n’en corrigeons aucun à la main et signalons les tarifs de plus de trois ans. Le prix affiché au centre le jour du contrôle fait foi.</p>
+    <h2>Contrôles avant publication</h2><p>Chaque mise à jour refuse un fichier anormalement court, écarte les saisies invraisemblables (moins de 30 € ou plus de 250 €) en les comptant, et rejoue les exemples datés des fiches Service Public : un calcul de date qui ne les retrouve pas bloque la publication.</p>
+    <h2>Calendrier de mise à jour</h2><p>Prix : chaque jour, à partir du fichier publié par l’administration. Règles de date : à chaque modification des fiches ou des textes. La date du fichier lu est affichée sur chaque page.</p>
+    <h2>Traitement des erreurs</h2>
+    <ol><li>Vérification contre la source primaire.</li><li>Correction du code ou des paramètres, ajout d’un test ; un prix faux dans le fichier de l’administration est signalé, pas réécrit.</li><li>Nouvelle date sur les pages concernées.</li></ol>
+    <h2>Indépendance</h2><p>Aucun lien commercial avec un centre, un réseau ou une plateforme de réservation. L’ordre de la liste est celui du prix puis de la distance. Toute relation commerciale serait indiquée dans le texte.</p>
+    <p>Voir aussi la <a href={route('method', lang)}>méthode</a>. Version : {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

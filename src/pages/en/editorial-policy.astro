@@ -1,0 +1,28 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Editorial policy – ${SITE_NAMES[lang]}`} description="Where the contrôle technique prices published here come from, who answers for them, how often they are reread, and what happens when a price or date rule is reported wrong." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Editorial and corrections policy</h1>
+    <p>An out-of-date price sends a driver to a centre dearer than advertised; a wrong re-inspection date makes them pay for a full test again. Here is where our data comes from and what we do when any of it is wrong.</p>
+    <h2>Responsibility</h2><p>{AUTHOR_NAME} answers for every median shown, every date rule and every calculation in the tools. A price or rule that does not match its source can be reported to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Primary sources only</h2>
+    <ul>
+      <li><strong>the “Prix des contrôles techniques” file</strong> on data.gouv.fr, in which every centre declares its prices (Licence Ouverte 2.0);</li>
+      <li><strong>the Service Public guidance pages</strong> on testing cars, vans, two-wheelers and classic vehicles, and on selling a used vehicle;</li>
+      <li><strong>the Highway Code and ministerial orders</strong> published on Légifrance (test intervals, price display);</li>
+      <li><strong>the administrative boundaries API</strong> for towns, postcodes and coordinates.</li>
+    </ul>
+    <p>No price is taken from a comparison site, a network of centres or a forum. A price the file does not contain (the extra emissions check for vans, for instance) is not published.</p>
+    <h2>Declared prices, never quotes</h2><p>Every price is the one the centre declared, with its date. We invent none, correct none by hand, and flag prices more than three years old. The price displayed at the centre on the day is what counts.</p>
+    <h2>Checks before publication</h2><p>Each update rejects an abnormally short file, sets aside implausible entries (under €30 or over €250) while counting them, and replays the dated examples from the Service Public pages: a date calculation that does not reproduce them blocks publication.</p>
+    <h2>Update schedule</h2><p>Prices: every day, from the file the authorities publish. Date rules: whenever the guidance pages or texts change. The date of the file read is shown on every page.</p>
+    <h2>Handling errors</h2>
+    <ol><li>Check against the primary source.</li><li>Fix the code or parameters and add a test; a wrong price in the government file is reported, not rewritten.</li><li>New date on the pages concerned.</li></ol>
+    <h2>Independence</h2><p>No commercial link with any centre, network or booking platform. The list is ordered by price, then distance. Any commercial relationship would be stated in the text.</p>
+    <p>See also the <a href={route('method', lang)}>method</a>. Version: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

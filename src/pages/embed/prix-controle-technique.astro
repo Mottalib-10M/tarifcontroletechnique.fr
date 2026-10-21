@@ -1,0 +1,23 @@
+---
+/** Page embarquable (iframe) : l'outil des centres sans navigation. noindex, hors sitemap (astro.config). */
+import '../../styles/global.css';
+import CentresTool from '../../components/ct/CentresTool';
+import { SITE_URL, LAST_UPDATED } from '../../data/site-config';
+import { outilVille } from '../../lib/outil-props';
+import { displayDate } from '../../lib/format';
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prix du contrôle technique près de chez vous – widget</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`${SITE_URL}/fr/`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+  <body class="bg-white p-2 text-navy-900">
+    <CentresTool client:load lang="fr" id="embed" {...outilVille('paris')} today={LAST_UPDATED} />
+    <p class="mt-2 text-center text-xs text-navy-600"><a href={`${SITE_URL}/fr/`} target="_blank" rel="noopener" class="underline">Tarif CT</a> · prix déclarés à la DGCCRF, fichier du {displayDate(LAST_UPDATED, 'fr-FR')}</p>
+  </body>
+</html>

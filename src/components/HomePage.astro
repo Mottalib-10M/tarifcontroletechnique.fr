@@ -1,0 +1,43 @@
+---
+/**
+ * Accueil d'une langue (page pilier, RECETTE §5) : la question d'abord — combien coûte le contrôle
+ * près de chez moi — donc l'outil des centres en tête, puis le bloc citable replié et le texte.
+ * Texte dans src/content/accueil.ts.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import CentresTool from './ct/CentresTool';
+import MiniSim from './calc/MiniSim';
+import Clamp from './Clamp.astro';
+import { HOME } from '../content/accueil';
+import { route, type Locale } from '../i18n/routes';
+import { helpers } from '../lib/helpers';
+import { outilVille } from '../lib/outil-props';
+import { P } from '../lib/engine/params';
+import type { SourceKey } from '../lib/engine/params';
+import { AUTHOR_NAME, LAST_UPDATED } from '../data/site-config';
+import { faqSchema, organizationSchema, websiteSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const x = HOME[lang];
+const H = helpers(lang);
+const path = route('home', lang);
+const parts = x.body(H).split(/<!--mini:([A-Za-z0-9_]+)-->/);
+const resume = x.resume(H);
+const faqs = x.faqs(H);
+const keys: SourceKey[] = ['dataset', 'prixConso', 'arretePrix', 'codeR323Prix', 'spVoiture', 'spDeuxRoues', 'codeR323', 'dgccrf', 'geoApi'];
+const sources = keys.map((k) => ({ name: P.sources[k].label[lang], url: P.sources[k].url }));
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ name: x.h1, description: x.description, path, lang }), webApplicationSchema({ name: x.h1, description: x.description, path, lang }), faqSchema(faqs, lang)];
+const fr = lang === 'fr';
+---
+<PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={faqs} sources={sources}>
+  <header class="mb-3">
+    <h1 style="hyphens: manual" class="text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{x.h1}</h1>
+    <p class="mt-2 text-base text-navy-700 max-sm:text-[0.95rem] sm:text-lg">{x.intro}</p>
+  </header>
+  <div data-outil><CentresTool client:load lang={lang} id="accueil" {...outilVille('paris')} today={LAST_UPDATED} methodHref={route('method', lang)} /></div>
+  <Clamp text={resume} lang={lang} id="clamp-home" sentences={2} class="mt-4" />
+  <p class="mt-3 text-sm text-navy-600">{fr ? 'Par' : 'By'} <a href={route('about', lang)} class="underline">{AUTHOR_NAME}</a> · <a href={route('method', lang)} class="underline">{fr ? 'Méthode et sources' : 'Method and sources'}</a> · <a href={route('departements', lang)} class="underline">{fr ? 'Prix par département' : 'Prices by département'}</a></p>
+  <div class="prose prose-slate mt-8 max-w-none">
+    {parts.map((p, i) => i % 2 === 0 ? <Fragment set:html={p} /> : <div class="mini-bloc"><MiniSim client:load kind={p} lang={lang} /></div>)}
+  </div>
+</PageLayout>

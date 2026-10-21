@@ -1,0 +1,33 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CLARITY_ID, CONTACT_EMAIL, GA4_ID, LAST_UPDATED, LEGAL, SITE_NAMES, SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Legal notice – ${SITE_NAMES[lang]}`} description="Publisher, publication director, host, intellectual property, reuse of the contrôle technique price file, limits of liability and applicable law for this site." lang={lang} noindex={true} breadcrumbs={[{ label: 'Legal notice' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Legal notice</h1>
+    <p>Information published under article 6 III-1 of French law no. 2004-575 of 21 June 2004 on confidence in the digital economy (LCEN).</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>Publication director: {AUTHOR_NAME}, responsible for the content published on {SITE_URL}.</p>
+    <h2>Host</h2>
+    <LegalIdentity mode="hosting" lang={lang} />
+    <h2>Purpose of the site and no advice</h2>
+    <p>The site shows, free of charge, the contrôle technique prices that approved centres declare to the authorities, medians worked out from those prices and due dates worked out from the visitor’s inputs. These results are not a quote, an offer or personal advice. The site is independent: it is affiliated with no government body, nor the DGCCRF, nor any inspection network or centre, uses no official logo and takes no bookings. The price displayed at the centre is what counts. Method and limits: <a href={route('method', lang)}>method</a>.</p>
+    <h2>Reused data</h2>
+    <p>Centre prices: the “Prix des contrôles techniques” dataset on data.gouv.fr, reused under the <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence" rel="nofollow noopener" target="_blank">Licence Ouverte 2.0 (Etalab)</a>, with the source stated and the last update date shown on every page; the data has been filtered (implausible entries set aside) and aggregated (medians) by the publisher. Towns and coordinates: the administrative boundaries API (geo.api.gouv.fr), same licence. Rules: Service Public guidance pages and texts published on Légifrance.</p>
+    <h2>Limits of liability</h2>
+    <p>Data is read automatically and checked, with no guarantee of being error-free or always available. The publisher cannot be held liable for a decision taken solely on the basis of a price or date shown here. Errors can be reported through the <a href={route('contact', lang)}>contact</a> page.</p>
+    <h2>Intellectual property</h2>
+    <p>Text, graphics and code are protected and remain the publisher’s property; short quotations are allowed with a link to the original page.</p>
+    <h2>Embedding the tool</h2><p>The price finder can be embedded free as an iframe, keeping the visible link: see the <a href={route('widget', lang)}>embed page</a>.</p>
+    {/* gen-legal-pages:terms */}
+    <h2>Personal data and cookies</h2>
+    {GA4_ID ? (<p>What you type in the calculators stays in your browser. The site sets Google Analytics audience measurement cookies (<code>_ga</code>, <code>_ga_{GA4_ID.replace('G-', '')}</code>, 13 months at most), with no advertising{CLARITY_ID && '; page stability is monitored with Microsoft Clarity, cookie-free'}. Details, legal basis and how to object: <a href={route('privacy', lang)}>privacy policy</a> and <a href={route('cookies', lang)}>cookies</a> page.</p>) : (<p>What you type in the calculators stays in your browser and the site sets no cookies{CLARITY_ID && '; page stability is monitored anonymously with Microsoft Clarity, cookie-free'}. See the <a href={route('privacy', lang)}>privacy policy</a> and the <a href={route('cookies', lang)}>cookies</a> page.</p>)}
+    {/* /gen-legal-pages:terms */}
+    <h2>Reporting</h2><p>Unlawful content: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>, with the page address and the reason.</p>
+    <h2>Governing law</h2><p>French law. Failing an amicable settlement, the competent courts of {LEGAL.jurisdiction}. Updated: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

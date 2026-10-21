@@ -1,0 +1,74 @@
+name: Prix du contrôle technique, mise à jour quotidienne et déploiement
+
+# Les centres agréés déclarent leurs prix à l'administration, qui publie le fichier « Prix des
+# contrôles techniques » sur data.gouv.fr (Licence Ouverte 2.0), mis à jour en continu. Chaque matin :
+# relevé du fichier (scripts/update-data.mjs), tests du moteur, build, publication sur GitHub Pages ;
+# les statistiques et l'historique des médianes sont recommités s'ils ont changé.
+# Si le relevé échoue (fichier coupé, réseau), le script n'écrit rien : le site garde les données
+# de la veille. Si un test échoue, rien n'est publié. Aucune clé d'API : données publiques.
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+  schedule:
+    - cron: '20 5 * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+      - name: Relevé du fichier des prix (data.gouv.fr)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        run: node scripts/update-data.mjs
+      - name: Tests du moteur
+        run: npx vitest run
+      - name: Build (avec contrôle des snippets)
+        run: npm run build
+      - name: Recommit des données si elles ont changé
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "releve-prix-ct"
+          git config user.email "releve-prix-ct@users.noreply.github.com"
+          git add src/data/ct public/data scripts/data
+          if ! git diff --cached --quiet; then
+            git commit -m "Prix des contrôles techniques : relevé du $(date -u +%F)" && git push || echo "push refusé, relevé gardé pour le prochain passage"
+          fi
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Checkout (script IndexNow)
+        uses: actions/checkout@v4
+      - name: Ping IndexNow
+        continue-on-error: true
+        run: bash scripts/indexnow.sh
