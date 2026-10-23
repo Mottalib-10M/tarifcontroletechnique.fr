@@ -1,6 +1,6 @@
 /** Configuration centrale du site (générée par new-site.py). */
 import FICHIER from './ct/fichier.json';
-export const SITE_URL = "https://fr-controle-technique.example";
+export const SITE_URL = "https://tarifcontroletechnique.fr";
 export const SITE_NAMES: Record<string, string> = {"fr": "Tarif CT", "en": "Tarif CT"};
 export const LANG_TAGS: Record<string, string> = {"fr": "fr-FR", "en": "en-FR"};
 export const OG_LOCALES: Record<string, string> = {"fr": "fr_FR", "en": "en_GB"};
@@ -20,7 +20,7 @@ export const AUTHOR_DESC: Record<string, string> = {"fr": "Radif Partners relit 
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"fr": ["Prix du contrôle technique par centre agréé", "Contre-visite et délai de deux mois", "Contrôle technique des deux-roues (catégorie L)", "Périodicité du contrôle technique des voitures", "Affichage des prix des centres de contrôle (arrêté du 29 juillet 2020)"], "en": ["Contrôle technique prices by approved centre", "Re-inspection (contre-visite) and the two-month window", "Motorcycle roadworthiness tests in France (category L)", "Inspection intervals for French cars", "Price display rules for French inspection centres"]};
-export const CONTACT_EMAIL = "contact@fr-controle-technique.example";
+export const CONTACT_EMAIL = "contact@tarifcontroletechnique.fr";
 export const THEME_COLOR = '#1F4E9A';
 export const LOGO_SYMBOL = 'CT';
 export const BING_VERIFY_CODE = '';

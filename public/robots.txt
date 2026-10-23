@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /*?*
 
-Sitemap: https://fr-controle-technique.example/sitemap-index.xml
+Sitemap: https://tarifcontroletechnique.fr/sitemap-index.xml
