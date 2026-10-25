@@ -7,11 +7,11 @@ import { displayDate, formatNumber } from '../../lib/format';
 import S from '../../data/ct/stats.json';
 const lang = 'fr';
 ---
-<PageLayout title="Tarif CT : qui compare les prix du contrôle technique" description="Qui édite Tarif CT, pourquoi un comparateur neutre des prix du contrôle technique, d’où viennent les tarifs des 6 000 centres et comment signaler un prix faux." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Accueil', path: route('home', lang) }, { name: 'À propos', path: route('about', lang) }])]} breadcrumbs={[{ label: 'À propos' }]}>
-  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">À propos de Tarif CT</h1></header>
+<PageLayout title="Tarif Contrôle Technique : qui compare les prix en France" description="Qui édite Tarif Contrôle Technique, pourquoi un comparateur neutre des prix, d’où viennent les tarifs des 6 000 centres et comment signaler un prix faux." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Accueil', path: route('home', lang) }, { name: 'À propos', path: route('about', lang) }])]} breadcrumbs={[{ label: 'À propos' }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">À propos de Tarif Contrôle Technique</h1></header>
   <div class="prose prose-slate max-w-none">
     <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
-    <p>Tarif CT est édité par Radif Partners. Il répond à une question que des centaines de milliers d’automobilistes et de motards se posent chaque mois : combien coûte le contrôle technique près de chez moi, et où est le moins cher ?</p>
+    <p>Tarif Contrôle Technique est édité par Radif Partners. Il répond à une question que des centaines de milliers d’automobilistes et de motards se posent chaque mois : combien coûte le contrôle technique près de chez moi, et où est le moins cher ?</p>
     <h2>Pourquoi ce site existe</h2>
     <p>Sur cette question, les premiers résultats sont une carte officielle qui liste les centres sans calculer de moyenne ni expliquer la contre-visite, des sites de prise de rendez-vous qui ne montrent que leurs centres partenaires, et des articles qui citent encore une « moyenne nationale » tirée d’études de 2018 ou 2019. Ce site fait mieux que le premier résultat Google parce qu’il calcule, chaque jour, la médiane de votre commune et de votre département à partir du fichier public des prix, montre la contre-visite et la date de chaque tarif, et classe les centres par prix, sans partenariat.</p>
     <h2>D’où viennent les chiffres</h2>

@@ -7,11 +7,11 @@ import { displayDate, formatNumber } from '../../lib/format';
 import S from '../../data/ct/stats.json';
 const lang = 'en';
 ---
-<PageLayout title="Tarif CT: who compares French contrôle technique prices" description="Who publishes Tarif CT, why a neutral comparison of French contrôle technique prices, where the prices of 6,000 centres come from and how to report a wrong one." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
-  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">About Tarif CT</h1></header>
+<PageLayout title="Tarif Contrôle Technique: who compares prices in France" description="Who publishes Tarif Contrôle Technique, why a neutral comparison of French prices, where the prices of 6,000 centres come from and how to report a wrong one." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">About Tarif Contrôle Technique</h1></header>
   <div class="prose prose-slate max-w-none">
     <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
-    <p>Tarif CT is published by Radif Partners. It answers a question hundreds of thousands of drivers and riders in France ask every month: what does the contrôle technique, the compulsory roadworthiness test, cost near me, and where is the cheapest?</p>
+    <p>Tarif Contrôle Technique is published by Radif Partners. It answers a question hundreds of thousands of drivers and riders in France ask every month: what does the contrôle technique, the compulsory roadworthiness test, cost near me, and where is the cheapest?</p>
     <h2>Why this site exists</h2>
     <p>On that question the top results are an official map that lists centres without working out any average or explaining the re-inspection, booking sites that only show their partner centres, and articles still quoting a “national average” from 2018 or 2019 studies. This site does better than the top Google result because it works out, every day, the median for your town and your département from the public price file, shows the re-inspection and the date of every price, and ranks centres by price, with no partnerships.</p>
     <h2>Where the figures come from</h2>

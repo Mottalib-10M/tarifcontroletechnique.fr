@@ -1,6 +1,6 @@
 {
- "name": "Tarif CT",
- "short_name": "Tarif CT",
+ "name": "Tarif Contrôle Technique",
+ "short_name": "Tarif Contrôle Technique",
  "description": "Prix du contrôle technique centre par centre, d'après les tarifs déclarés à la DGCCRF : moyenne et médiane de votre commune, centre le moins cher, contre-visite, moto.",
  "start_url": "/fr/",
  "display": "standalone",

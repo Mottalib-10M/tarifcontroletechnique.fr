@@ -5,7 +5,7 @@ import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data
 import { route } from '../../i18n/routes';
 const lang = 'fr';
 ---
-<PageLayout title={`Contact – ${SITE_NAMES[lang]}`} description="Écrire à l’éditeur de Tarif CT : signaler un prix qui ne correspond pas à l’affichage d’un centre, un centre fermé, une question sur la méthode, intégrer le comparateur." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+<PageLayout title={`Contact – ${SITE_NAMES[lang]}`} description="Écrire à l’éditeur de Tarif Contrôle Technique : signaler un prix qui ne correspond pas à l’affichage d’un centre, un centre fermé, une question sur la méthode, intégrer le comparateur." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
   <div class="prose prose-slate max-w-none">
     <h1>Contact</h1>
     <p>Une seule adresse, lue chaque semaine : <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Il n’y a pas de ligne téléphonique, et nous ne rappelons personne : ce site ne vend rien et ne prend aucun rendez-vous.</p>
@@ -17,6 +17,6 @@ const lang = 'fr';
     <p>Associations d’automobilistes, clubs de motards, rédactions locales : l’outil des prix par commune s’intègre gratuitement en iframe. Le code est sur la page <a href={route('widget', lang)}>Intégrer le comparateur</a>.</p>
     <h2>Éditeur</h2>
     <LegalIdentity lang={lang} />
-    <p>{AUTHOR_NAME} répond du contenu de Tarif CT ; l’identité complète figure dans les <a href={route('terms', lang)}>mentions légales</a>. Page revue le {LAST_UPDATED}.</p>
+    <p>{AUTHOR_NAME} répond du contenu de Tarif Contrôle Technique ; l’identité complète figure dans les <a href={route('terms', lang)}>mentions légales</a>. Page revue le {LAST_UPDATED}.</p>
   </div>
 </PageLayout>

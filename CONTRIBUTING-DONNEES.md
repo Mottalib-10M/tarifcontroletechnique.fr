@@ -1,4 +1,4 @@
-# Données de Tarif CT (fr-controle-technique)
+# Données de Tarif Contrôle Technique (fr-controle-technique)
 
 Tout le site repose sur un fichier public, relu chaque jour. Aucun prix n'est écrit à la main dans une page.
 

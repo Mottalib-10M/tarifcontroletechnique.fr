@@ -1,7 +1,9 @@
 /** Configuration centrale du site (générée par new-site.py). */
 import FICHIER from './ct/fichier.json';
 export const SITE_URL = "https://tarifcontroletechnique.fr";
-export const SITE_NAMES: Record<string, string> = {"fr": "Tarif CT", "en": "Tarif CT"};
+// Partie du nom en couleur dans l'en-tete ('' = aucune).
+export const BRAND_ACCENT = 'Contrôle Technique';
+export const SITE_NAMES: Record<string, string> = {"fr": "Tarif Contrôle Technique", "en": "Tarif Contrôle Technique"};
 export const LANG_TAGS: Record<string, string> = {"fr": "fr-FR", "en": "en-FR"};
 export const OG_LOCALES: Record<string, string> = {"fr": "fr_FR", "en": "en_GB"};
 /** Une locale par langue (RECETTE §4) : les nombres anglais s'écrivent « €1,234 », jamais « 1 234 € ». */

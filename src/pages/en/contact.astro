@@ -5,7 +5,7 @@ import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data
 import { route } from '../../i18n/routes';
 const lang = 'en';
 ---
-<PageLayout title={`Contact – ${SITE_NAMES[lang]}`} description="Write to the publisher of Tarif CT: report a price that does not match a centre’s display, a closed centre, a question on the method, or embed the price finder." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+<PageLayout title={`Contact – ${SITE_NAMES[lang]}`} description="Write to the publisher of Tarif Contrôle Technique: report a price that does not match a centre’s display, a closed centre, a question on the method, or embed the price finder." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
   <div class="prose prose-slate max-w-none">
     <h1>Contact</h1>
     <p>One address, read every week: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. There is no phone line and we call nobody back: this site sells nothing.</p>
@@ -17,6 +17,6 @@ const lang = 'en';
     <p>Drivers’ associations, motorcycle clubs, local newsrooms: the town-by-town price finder can be embedded free as an iframe. The code is on the <a href={route('widget', lang)}>embed page</a>.</p>
     <h2>Publisher</h2>
     <LegalIdentity lang={lang} />
-    <p>{AUTHOR_NAME} is responsible for Tarif CT’s content; full identity in the <a href={route('terms', lang)}>legal notice</a>. Page reviewed on {LAST_UPDATED}.</p>
+    <p>{AUTHOR_NAME} is responsible for Tarif Contrôle Technique’s content; full identity in the <a href={route('terms', lang)}>legal notice</a>. Page reviewed on {LAST_UPDATED}.</p>
   </div>
 </PageLayout>

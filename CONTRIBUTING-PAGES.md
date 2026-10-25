@@ -1,4 +1,4 @@
-# Ajouter ou modifier une page de Tarif CT (fr-controle-technique)
+# Ajouter ou modifier une page de Tarif Contrôle Technique (fr-controle-technique)
 
 À lire avec `~/Documents/GitHub/RECETTE-SITE.md` §6 (unicité), §7 (FAQ), §9 (écriture), §9.3
 (mini-simulateurs), §11 (titres), §21 (bloc citable). Éditeur : Radif Partners. Aucun lien vers un centre,
