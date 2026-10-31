@@ -138,7 +138,7 @@ export default function CentresTool({ lang: l, id, lieu: lieu0, initial, refs, t
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-navy-200 bg-navy-50 px-4 py-2 text-sm">
             <p className="font-semibold text-navy-900">{T(l, `${liste.length} centres agréés, ${veh.court.fr}`, `${liste.length} approved centres, ${veh.court.en}`)}</p>
             <p className="flex gap-2">
-              {(['prix', 'km'] as const).map((t) => <button key={t} type="button" onClick={() => setTri(t)} className={`rounded border px-2 py-1 ${tri === t ? 'border-accent-500 bg-white font-semibold text-accent-700' : 'border-navy-200 text-navy-600'}`}>{t === 'prix' ? T(l, 'Par prix', 'By price') : T(l, 'Par distance', 'By distance')}</button>)}
+              {(['prix', 'km'] as const).map((t) => <button key={t} type="button" onClick={() => setTri(t)} className={`min-h-11 rounded border px-3 py-1 ${tri === t ? 'border-accent-500 bg-white font-semibold text-accent-700' : 'border-navy-200 text-navy-600'}`}>{t === 'prix' ? T(l, 'Par prix', 'By price') : T(l, 'Par distance', 'By distance')}</button>)}
             </p>
           </div>
           <table className="w-full text-sm">
@@ -167,7 +167,7 @@ export default function CentresTool({ lang: l, id, lieu: lieu0, initial, refs, t
           </table>
           <div className="flex flex-wrap items-center justify-between gap-2 border-t border-navy-200 px-4 py-2 text-xs text-navy-600">
             <span>{T(l, '* tarif déclaré il y a plus de 3 ans : à confirmer à l’accueil du centre.', '* price declared over 3 years ago: check it at the centre’s desk.')}</span>
-            {triee.length > 10 && <button type="button" onClick={() => { setTout(!tout); charger(); }} className="rounded border border-navy-300 px-3 py-1 font-medium text-navy-800">{tout ? T(l, 'Réduire', 'Show fewer') : T(l, `Voir les ${triee.length} centres`, `Show all ${triee.length} centres`)}</button>}
+            {triee.length > 10 && <button type="button" onClick={() => { setTout(!tout); charger(); }} className="min-h-11 rounded border border-navy-300 px-3 py-1 font-medium text-navy-800">{tout ? T(l, 'Réduire', 'Show fewer') : T(l, `Voir les ${triee.length} centres`, `Show all ${triee.length} centres`)}</button>}
           </div>
         </div>
       )}

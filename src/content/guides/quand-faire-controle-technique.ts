@@ -56,7 +56,7 @@ export default defineGuide({
 <h2>Ce que vous risquez avec un contrôle périmé</h2>
 <p>Circuler sans contrôle valide est une contravention de quatrième classe : amende forfaitaire de ${h.eur(h.P.sanctions.amende_forfaitaire)}, jusqu’à ${h.eur(h.P.sanctions.amende_max)} en cas de poursuite devant le tribunal. Les forces de l’ordre peuvent retenir le certificat d’immatriculation et remettre une fiche de circulation de ${h.num(h.P.sanctions.fiche_circulation_jours)} jours, le temps de faire contrôler le véhicule. Un retard n’entraîne aucun rattrapage ni pénalité au centre : le contrôle se fait normalement, au prix habituel.</p>
 <h2>Choisir son moment, et son centre</h2>
-<p>Les centres sont plus chargés avant les vacances d’été et en fin d’année ; prendre rendez-vous trois à quatre semaines avant l’échéance laisse de la marge pour une éventuelle contre-visite. Côté prix, l’écart entre centres voisins compte plus que le moment : la médiane nationale est de ${h.prix(n.s.e.med)}, mais un centre sur dix est sous ${h.prix(n.s.e.p10)}. L’outil de la ${h.a('home', 'page d’accueil')} les classe par prix autour de votre commune.</p>`;
+<p>Les centres sont plus chargés avant les vacances d’été et en fin d’année ; prendre rendez-vous trois à quatre semaines avant l’échéance laisse de la marge pour une éventuelle contre-visite. Côté prix, l’écart entre centres voisins compte plus que le moment : la médiane nationale est de ${h.prix(n.s.e.med)}, mais un centre sur dix est à ${h.prix(n.s.e.p10)} ou moins. L’outil de la ${h.a('home', 'page d’accueil')} les classe par prix autour de votre commune.</p>`;
     },
   },
   en: {
@@ -98,7 +98,7 @@ export default defineGuide({
 <h2>What you risk with an expired test</h2>
 <p>Driving without a valid test is a 4th-class offence: a fixed fine of ${h.eur(h.P.sanctions.amende_forfaitaire)}, up to ${h.eur(h.P.sanctions.amende_max)} if prosecuted in court. The police may keep the registration certificate and issue a ${h.num(h.P.sanctions.fiche_circulation_jours)}-day permit to drive while you have the vehicle tested. Being late brings no catch-up charge or penalty at the centre: the test is done as usual, at the usual price.</p>
 <h2>Choosing your moment, and your centre</h2>
-<p>Centres are busier before the summer holidays and at the end of the year; booking three or four weeks before the deadline leaves room for a possible re-inspection. On price, the gap between nearby centres matters more than timing: the national median is ${h.prix(n.s.e.med)}, but one centre in ten is below ${h.prix(n.s.e.p10)}. The tool on the ${h.a('home', 'home page')} ranks them by price around your town.</p>`;
+<p>Centres are busier before the summer holidays and at the end of the year; booking three or four weeks before the deadline leaves room for a possible re-inspection. On price, the gap between nearby centres matters more than timing: the national median is ${h.prix(n.s.e.med)}, but one centre in ten is at ${h.prix(n.s.e.p10)} or less. The tool on the ${h.a('home', 'home page')} ranks them by price around your town.</p>`;
     },
   },
 });

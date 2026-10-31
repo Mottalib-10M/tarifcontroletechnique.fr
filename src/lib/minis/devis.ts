@@ -20,7 +20,7 @@ export default (l: L): MiniSpec => ({
       rows: [
         [T(l, 'Médiane du département', 'Département median'), prixL(med, l)],
         [T(l, 'Le moins cher du département', 'Cheapest in the département'), DEP[d][5] != null ? prixL(DEP[d][5]!, l) : '—'],
-        [T(l, 'France : 1 centre sur 10 sous / au-dessus de', 'France: 1 centre in 10 below / above'), `${prixL(NAT.e.p10, l)} / ${prixL(NAT.e.p90, l)}`],
+        [T(l, 'France : 1 centre sur 10 à ce prix ou moins / ou plus', 'France: 1 centre in 10 at or below / at or above'), `${prixL(NAT.e.p10, l)} / ${prixL(NAT.e.p90, l)}`],
         [T(l, 'Verdict', 'Verdict'), verdict],
       ],
     };
