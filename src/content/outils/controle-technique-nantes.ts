@@ -25,7 +25,7 @@ export default defineGuide({
     title: 'Contrôle technique à Nantes : prix et contre-visite',
     description: 'Contrôle technique à Nantes : prix déclarés par chaque centre, médianes ville et métropole, nord et sud Loire, contre-visite, échéance. Fichier DGCCRF du jour.',
     h1: 'Contrôle technique à Nantes : prix des centres',
-    intro: 'Les prix que les centres de Nantes et de sa métropole déclarent à la DGCCRF, et la date à laquelle votre voiture doit passer.',
+    intro: 'Les prix du contrôle technique que les centres de Nantes et de sa métropole déclarent à la DGCCRF, et la date à laquelle votre voiture doit passer.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!;
       return `À Nantes, le contrôle technique d’une voiture essence ou diesel est déclaré à ${h.prix(x.e!.med)} en médiane par les ${x.nb(x.v.n, 'centre agréé', 'centres agréés')} de la commune, ${x.cmp(x.e!.med, x.natMed)} la médiane nationale (${h.prix(x.natMed)}). Les prix de la ville vont de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)}. Dans un rayon de 15 km, qui couvre l’essentiel de la métropole des deux côtés de la Loire, ${h.num(x.v.n15)} centres ont une médiane de ${h.prix(x.e15!.med)}. ${dansNantes(h) ? `Le centre le moins cher de tout ce rayon est dans Nantes même, à ${h.prix(mc15.p)}.` : `Le moins cher de ce rayon déclare ${h.prix(mc15.p)} à ${mc15.v}.`} En cas de contrôle défavorable, la contre-visite se déclare entre ${h.prix(x.v.cv!.min.med)} et ${h.prix(x.v.cv!.max.med)} en médiane. Tous ces prix sont ceux que chaque centre transmet à l’administration, relus ce jour dans le fichier public (${x.fichier}) ; l’outil les trie pour la commune que vous indiquez.`;
@@ -41,7 +41,7 @@ export default defineGuide({
     },
     body: (h) => {
       const x = ville(h, SLUG), v = voisins(h), s = sud(h);
-      return `<h2>Les centres de la ville</h2>
+      return `<h2>Les centres de contrôle technique à Nantes</h2>
 <p>La commune de Nantes compte ${x.nb(x.v.n, 'centre', 'centres')} qui déclarent un prix pour les voitures. Leur médiane, ${h.prix(x.e!.med)}, est ${x.cmp(x.e!.med, x.depMed)} celle de la Loire-Atlantique (${h.prix(x.depMed)}). L’éventail est plutôt resserré : ${h.prix(x.v.plusCher!.p - x.v.moinsCher!.p)} séparent le centre le moins cher de la ville du plus cher. Le premier déclare ${h.prix(x.v.moinsCher!.p)} ; il apparaît en tête de la liste de l’outil quand on la trie par prix.</p>
 <p>${x.v.ancien != null && x.v.ancien < h.S.national.ancien ? 'Un trait distingue les centres nantais : leurs fiches sont souvent récentes.' : 'Les fiches des centres nantais ne sont pas toutes récentes.'} ${x.v.ancien != null ? `${h.pct(x.v.ancien, 0)} déclarent un tarif voiture antérieur à 2023, quand la proportion nationale est de ${h.pct(h.S.national.ancien, 0)}.` : ''} Un tarif récent ne garantit pas l’exactitude, mais il réduit le risque d’une mauvaise surprise à l’accueil.</p>
 ${x.vehTable(`Nantes, 15 km autour et France : prix médian par véhicule, fichier du ${x.fichier}`)}
@@ -69,7 +69,7 @@ ${x.voisinesTable(`Communes voisines de Nantes : contrôle d’une voiture essen
     title: 'Contrôle technique in Nantes: centre prices, re-inspection',
     description: 'Contrôle technique in Nantes: prices declared by centres, city and metro medians, north and south of the Loire, re-inspection, due date. Today’s DGCCRF file.',
     h1: 'Contrôle technique in Nantes: centre prices',
-    intro: 'The prices that centres in Nantes and its metro area declare to the DGCCRF, and the date your car must be tested by.',
+    intro: 'The contrôle technique prices that centres in Nantes and its metro area declare to the DGCCRF, and the date your car must be tested by.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!;
       return `In Nantes, a contrôle technique (the French compulsory roadworthiness test) for a petrol or diesel car is declared at ${h.prix(x.e!.med)} at the median by the commune’s ${x.nb(x.v.n, 'approved centre', 'approved centres')}, ${x.cmp(x.e!.med, x.natMed)} the national median (${h.prix(x.natMed)}). City prices run from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}. Within 15 km, which covers most of the metro area on both banks of the Loire, ${h.num(x.v.n15)} centres have a median of ${h.prix(x.e15!.med)}. ${dansNantes(h) ? `The cheapest centre in that whole radius is in Nantes itself, at ${h.prix(mc15.p)}.` : `The cheapest in that radius declares ${h.prix(mc15.p)} in ${mc15.v}.`} After a fail, the re-inspection (contre-visite) is declared at between ${h.prix(x.v.cv!.min.med)} and ${h.prix(x.v.cv!.max.med)} at the median. All these are the prices each centre reports to the authorities, reread today in the public file (${x.fichier}); the tool sorts them for the town you enter.`;
@@ -85,7 +85,7 @@ ${x.voisinesTable(`Communes voisines de Nantes : contrôle d’une voiture essen
     },
     body: (h) => {
       const x = ville(h, SLUG), v = voisins(h), s = sud(h);
-      return `<h2>The city’s centres</h2>
+      return `<h2>Contrôle technique centres in Nantes</h2>
 <p>The commune of Nantes has ${x.nb(x.v.n, 'centre', 'centres')} declaring a car price. Their median, ${h.prix(x.e!.med)}, is ${x.cmp(x.e!.med, x.depMed)} the Loire-Atlantique median (${h.prix(x.depMed)}). The range is fairly narrow: ${h.prix(x.v.plusCher!.p - x.v.moinsCher!.p)} separate the city’s cheapest centre from its dearest. The cheapest declares ${h.prix(x.v.moinsCher!.p)}; it tops the tool’s list when sorted by price.</p>
 <p>${x.v.ancien != null && x.v.ancien < h.S.national.ancien ? 'One thing sets Nantes centres apart: their records are often recent.' : 'Not all Nantes centres keep their records fresh.'} ${x.v.ancien != null ? `${h.pct(x.v.ancien, 0)} declare a car price from before 2023, while the national share is ${h.pct(h.S.national.ancien, 0)}.` : ''} A recent price does not guarantee accuracy, but it lowers the risk of a surprise at the desk.</p>
 ${x.vehTable(`Nantes, 15 km around and France: median price by vehicle, file of ${x.fichier}`)}

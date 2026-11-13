@@ -23,7 +23,7 @@ export default defineGuide({
     title: 'Contrôle technique à Paris : prix par centre, le moins cher',
     description: 'Prix du contrôle technique à Paris, centre par centre : médiane en ville, arrondissements, petite couronne moins chère, contre-visite. Fichier DGCCRF du jour.',
     h1: 'Contrôle technique à Paris : prix de chaque centre',
-    intro: 'Les tarifs que chaque centre parisien et de la proche banlieue déclare à la DGCCRF, triés du moins cher au plus cher.',
+    intro: 'Les tarifs du contrôle technique à Paris : ce que chaque centre de la capitale et de la proche banlieue déclare à la DGCCRF, triés du moins cher au plus cher.',
     resume: (h) => {
       const x = ville(h, SLUG);
       return `Paris intra-muros ne compte que ${x.nb(x.v.n, 'centre de contrôle technique agréé', 'centres de contrôle technique agréés')} pour les voitures, pour plus de deux millions d’habitants : c’est peu, et cela se voit sur les prix. La médiane d’un contrôle essence ou diesel y est de ${h.prix(x.e!.med)}, ${x.cmp(x.e!.med, x.natMed)} la médiane nationale (${h.prix(x.natMed)}), avec des tarifs qui vont de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)}. Dans un rayon de 15 km, on trouve en revanche ${h.num(x.v.n15)} centres, dont la médiane tombe à ${h.prix(x.e15!.med)} ; le moins cher de ce rayon, à ${x.v.moinsCher15!.v}, affiche ${h.prix(x.v.moinsCher15!.p)}. Ces chiffres viennent du fichier public où chaque centre déclare ses prix à la DGCCRF, relu ce jour (${x.fichier}) : ce ne sont ni des moyennes d’enquête ni des devis. La contre-visite se paie le plus souvent entre ${h.prix(x.v.cv!.min.med)} et ${h.prix(x.v.cv!.max.med)} à Paris. Tapez un arrondissement ou une commune voisine dans l’outil pour voir les centres autour, sans compte ni rendez-vous.`;
@@ -64,7 +64,7 @@ ${x.voisinesTable(`Communes voisines de Paris : prix d’un contrôle voiture es
     title: 'Contrôle technique in Paris: price by centre, the cheapest',
     description: 'Contrôle technique prices in Paris, centre by centre: median inside the city, by arrondissement, cheaper inner suburbs, re-inspection cost. Today’s DGCCRF data.',
     h1: 'Contrôle technique in Paris: every centre’s price',
-    intro: 'The prices each centre in Paris and the nearby suburbs declares to the DGCCRF, sorted from cheapest to dearest.',
+    intro: 'The contrôle technique prices each centre in Paris and the nearby suburbs declares to the DGCCRF, sorted from cheapest to dearest.',
     resume: (h) => {
       const x = ville(h, SLUG);
       return `Central Paris has only ${x.nb(x.v.n, 'approved contrôle technique centre', 'approved contrôle technique centres')} for cars, for more than two million residents, and it shows in the prices. The median for a petrol or diesel car is ${h.prix(x.e!.med)}, ${x.cmp(x.e!.med, x.natMed)} the French median (${h.prix(x.natMed)}), with prices from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}. Within 15 km, though, there are ${h.num(x.v.n15)} centres and the median drops to ${h.prix(x.e15!.med)}; the cheapest one in that radius, in ${x.v.moinsCher15!.v}, charges ${h.prix(x.v.moinsCher15!.p)}. These figures come from the public file in which every centre declares its prices to the DGCCRF, France’s consumer protection authority, read today (${x.fichier}): they are neither survey averages nor quotes. A re-inspection (contre-visite) usually costs between ${h.prix(x.v.cv!.min.med)} and ${h.prix(x.v.cv!.max.med)} in Paris. Type an arrondissement or a nearby town into the tool to see the centres around it, with no account and no booking.`;

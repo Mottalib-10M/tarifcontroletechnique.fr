@@ -25,7 +25,7 @@ export default defineGuide({
     title: 'Contrôle technique à Rennes : prix en ville et sur la rocade',
     description: 'Contrôle technique à Rennes : prix déclarés par chaque centre, médianes Rennes et couronne, Saint-Grégoire, électrique, contre-visite. Fichier DGCCRF du jour.',
     h1: 'Contrôle technique à Rennes : prix des centres',
-    intro: 'Les prix que les centres de Rennes et des communes de la rocade déclarent à la DGCCRF, pour une voiture thermique, électrique ou une moto.',
+    intro: 'Les prix du contrôle technique que les centres de Rennes et des communes de la rocade déclarent à la DGCCRF, pour une voiture thermique, électrique ou une moto.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!;
       return `Un contrôle technique de voiture essence ou diesel coûte ${h.prix(x.e!.med)} en médiane à Rennes, ${x.cmp(x.e!.med, x.natMed)} la médiane nationale (${h.prix(x.natMed)}). La ville ne compte que ${x.nb(x.v.n, 'centre déclarant', 'centres déclarant')} un prix voiture, de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)} : ${x.v.n15 - x.v.n > x.v.n ? 'la plupart des centres de l’agglomération sont dans les communes de la rocade' : 'l’agglomération en compte d’autres dans les communes voisines'}. Dans un rayon de 15 km, on en trouve ${h.num(x.v.n15)}, pour une médiane de ${h.prix(x.e15!.med)}, et le moins cher, à ${mc15.v}, déclare ${h.prix(mc15.p)}. Pour une électrique, la médiane rennaise monte à ${x.v.s.el ? h.prix(x.v.s.el.med) : 'un niveau non calculable'}. La contre-visite se déclare entre ${h.prix(x.v.cv!.min.med)} et ${h.prix(x.v.cv!.max.med)} en médiane. Ces montants viennent du fichier public où chaque centre déclare ses prix à l’administration, relu ce jour (${x.fichier}) ; l’outil liste les centres autour de votre commune, du moins cher au plus cher, sans compte ni rendez-vous à prendre ici.`;
@@ -69,7 +69,7 @@ ${x.vehTable(`Rennes, 15 km autour et France : prix médian par véhicule, fichi
     title: 'Contrôle technique in Rennes: prices in town and ring road',
     description: 'Contrôle technique in Rennes: prices declared by each centre, Rennes and suburban medians, Saint-Grégoire, electric cars, re-inspection. Today’s DGCCRF file.',
     h1: 'Contrôle technique in Rennes: centre prices',
-    intro: 'The prices that centres in Rennes and the towns along its ring road declare to the DGCCRF, for a petrol, diesel or electric car, or a motorbike.',
+    intro: 'The contrôle technique prices that centres in Rennes and the towns along its ring road declare to the DGCCRF, for a petrol, diesel or electric car, or a motorbike.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!;
       return `A contrôle technique (France’s compulsory roadworthiness test) for a petrol or diesel car costs ${h.prix(x.e!.med)} at the median in Rennes, ${x.cmp(x.e!.med, x.natMed)} the national median (${h.prix(x.natMed)}). The city has only ${x.nb(x.v.n, 'centre declaring', 'centres declaring')} a car price, from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}: ${x.v.n15 - x.v.n > x.v.n ? 'most of the urban area’s centres are in the towns along the rocade (ring road)' : 'the urban area has others in neighbouring towns'}. Within 15 km there are ${h.num(x.v.n15)}, with a median of ${h.prix(x.e15!.med)}, and the cheapest, in ${mc15.v}, declares ${h.prix(mc15.p)}. For an electric car the Rennes median rises to ${x.v.s.el ? h.prix(x.v.s.el.med) : 'a level too thin to compute'}. A re-inspection (contre-visite) is declared at between ${h.prix(x.v.cv!.min.med)} and ${h.prix(x.v.cv!.max.med)} at the median. These amounts come from the public file in which each centre declares its prices to the authorities, read today (${x.fichier}); the tool lists the centres around your town, cheapest first, with no account and no booking here.`;
@@ -93,7 +93,7 @@ ${x.voisinesTable(`Towns near Rennes: petrol car test, file of ${x.fichier}`)}
 <p>${ee > 0 ? `The gap between electric and petrol is clear in Rennes: ${h.prix(x.v.s.el!.med)} against ${h.prix(x.e!.med)} at the median, ${h.prix(ee)} more.` : x.v.s.el ? `In Rennes the electric median (${h.prix(x.v.s.el.med)}) is no higher than petrol.` : 'Few Rennes centres declare an electric price.'} ${x.v.s15.el ? `Within 15 km the electric median is ${h.prix(x.v.s15.el.med)}.` : ''} Nothing in the regulations requires this extra cost, and an electric car test includes no exhaust gas measurement. The mini calculator compares both prices in the département.</p>
 <!--mini:elecDept_35-->
 <p>The ${h.a('controle-technique-electrique', 'electric car guide')} explains what the inspector checks on an electric or hybrid car, and how to spot centres without a surcharge.</p>
-<h2>Every vehicle</h2>
+<h2>Contrôle technique in Rennes for every vehicle</h2>
 ${x.vehTable(`Rennes, 15 km around and France: median price by vehicle, file of ${x.fichier}`)}
 <p>${x.v.s.m ? `For a motorbike, ${x.nb(x.v.s.m.n, 'centre in the city declares', 'centres in the city declare')} a price` : 'For a motorbike, few centres in the city declare a price'}${x.v.s15.m ? `, and ${h.num(x.v.s15.m.n)} within 15 km` : ''}: widen the radius in the tool. The two-wheeler timetable is in the ${h.a('controle-technique-moto', 'motorcycle guide')}.</p>
 <h2>The cost over time</h2>

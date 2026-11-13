@@ -52,7 +52,7 @@ export default defineGuide({
 <p>Le Havre occupe la pointe de l’estuaire de la Seine, face à la Manche. Au sud, l’estuaire et la zone industrialo-portuaire ; à l’ouest, la mer. Pour trouver beaucoup de centres, il faudrait donc aller loin vers l’est ou le nord, dans le pays de Caux. Conséquence : avec ${h.num(v.n)} centres dans la commune pour ${h.num(v.n15)} dans un rayon de 15 km, Le Havre est l’une des rares grandes villes où l’on fait son contrôle sans quitter la commune.</p>
 <p>La fourchette des prix havrais pour une voiture essence s’étend de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)}. La médiane de la ville est ${x.cmp(x.e!.med, x.e15!.med)} celle du rayon de 15 km : les deux se confondent presque, puisque la ville fournit l’essentiel des centres du rayon.</p>
 ${x.vehTable(`Prix médian par véhicule au Havre, dans les 15 km et en France, fichier du ${x.fichier}`)}
-${multi ? `<h2>Par code postal</h2>
+${multi ? `<h2>Le contrôle technique au Havre, par code postal</h2>
 <p>La ville a plusieurs codes postaux. Le tableau suivant donne, pour chacun de ceux où un centre est installé, le nombre de centres et leur médiane. Il montre surtout que l’adresse ne fait pas le prix : l’écart se joue d’un centre à l’autre.</p>
 ${x.arrTable(`Prix d’un contrôle voiture essence par code postal havrais, fichier du ${x.fichier}`)}` : ''}
 <h2>La Seine-Maritime dans le classement</h2>
@@ -75,7 +75,7 @@ ${x.voisinesTable(`Communes autour du Havre : prix d’un contrôle voiture esse
     title: 'Contrôle technique in Le Havre: every centre’s price',
     description: 'Contrôle technique prices in Le Havre: every centre in the city and estuary, medians by postcode and for Seine-Maritime, the cheapest, motorbikes, re-checks.',
     h1: 'Contrôle technique in Le Havre: every centre’s price',
-    intro: 'Prices declared by centres in Le Havre and the tip of the Pays de Caux, ranked from cheapest to dearest, with the re-inspection.',
+    intro: 'Contrôle technique prices declared by centres in Le Havre and the tip of the Pays de Caux, ranked from cheapest to dearest, with the re-inspection.',
     resume: (h) => {
       const x = ville(h, SLUG), v = x.v;
       return `In Le Havre, ${x.nb(v.n, 'contrôle technique centre declares', 'contrôle technique centres declare')} a car price in the DGCCRF’s public file, and the median for a petrol car test (the contrôle technique is France’s compulsory roadworthiness test) is ${h.prix(x.e!.med)}, within a range of ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}. The city is ${x.cmp(x.e!.med, x.natMed)} the national median (${h.prix(x.natMed)}) and ${x.cmp(x.e!.med, x.depMed)} the Seine-Maritime median (${h.prix(x.depMed)}). Unlike most big cities, most of the choice is inside the city itself: there are only ${h.num(v.n15)} centres within 15 km, because the sea and the Seine estuary take up much of that circle. ${v.moinsCher ? `The cheapest in the city charges ${h.prix(v.moinsCher.p)}.` : ''} ${v.s.m ? `For a motorbike, the Le Havre median is ${h.prix(v.s.m.med)}.` : ''} All these figures are recalculated every day from the centres’ declarations (file of ${x.fichier}). The tool searches from any town on the tip of the Pays de Caux.`;
@@ -96,7 +96,7 @@ ${x.voisinesTable(`Communes autour du Havre : prix d’un contrôle voiture esse
 <p>Le Havre sits at the tip of the Seine estuary, facing the Channel. To the south lie the estuary and the industrial port zone; to the west, the sea. Finding many centres would mean going a long way east or north into the Pays de Caux. As a result, with ${h.num(v.n)} centres in the city and ${h.num(v.n15)} within 15 km, Le Havre is one of the few large cities where you take your test without leaving town.</p>
 <p>Le Havre prices for a petrol car run from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}. The city median is ${x.cmp(x.e!.med, x.e15!.med)} the 15 km median: the two almost merge, since the city supplies most of the centres in the radius.</p>
 ${x.vehTable(`Median price by vehicle in Le Havre, within 15 km and in France, file of ${x.fichier}`)}
-${multi ? `<h2>By postcode</h2>
+${multi ? `<h2>Contrôle technique in Le Havre by postcode</h2>
 <p>The city has several postcodes. The next table gives, for each one with a centre, the number of centres and their median. Above all it shows that the address does not set the price: the gap is between one centre and the next.</p>
 ${x.arrTable(`Price of a petrol car test by Le Havre postcode, file of ${x.fichier}`)}` : ''}
 <h2>Seine-Maritime in the ranking</h2>

@@ -29,7 +29,7 @@ export default defineGuide({
     title: 'Contrôle technique à Marseille : prix par arrondissement',
     description: 'Prix du contrôle technique à Marseille : médiane par arrondissement, centre le moins cher, moto et scooter, contre-visite gratuite. Fichier DGCCRF du jour.',
     h1: 'Contrôle technique à Marseille : les prix, quartier par quartier',
-    intro: 'Les tarifs déclarés par chaque centre marseillais à la DGCCRF, du 1er au 16e arrondissement, pour une voiture, une moto ou un scooter.',
+    intro: 'Les tarifs du contrôle technique à Marseille, déclarés par chaque centre à la DGCCRF, du 1er au 16e arrondissement, pour une voiture, une moto ou un scooter.',
     resume: (h) => {
       const x = ville(h, SLUG), mc = x.v.moinsCher!, mc15 = x.v.moinsCher15!;
       const meme = mc15.v === mc.v && mc15.p === mc.p;
@@ -74,7 +74,7 @@ ${x.voisinesTable(`Communes voisines de Marseille : contrôle voiture essence, f
     title: 'Contrôle technique in Marseille: prices by district',
     description: 'Contrôle technique prices in Marseille: median by arrondissement, cheapest centre, motorbikes and scooters, free or paid re-inspection. Today’s DGCCRF file.',
     h1: 'Contrôle technique in Marseille: prices district by district',
-    intro: 'The prices every Marseille centre declares to the DGCCRF, from the 1st to the 16th arrondissement, for a car, a motorbike or a scooter.',
+    intro: 'The contrôle technique prices every Marseille centre declares to the DGCCRF, from the 1st to the 16th arrondissement, for a car, a motorbike or a scooter.',
     resume: (h) => {
       const x = ville(h, SLUG), mc = x.v.moinsCher!, mc15 = x.v.moinsCher15!;
       const meme = mc15.v === mc.v && mc15.p === mc.p;
@@ -108,7 +108,7 @@ ${x.voisinesTable(`Towns near Marseille: petrol car test, file of ${x.fichier}`)
 <p>A fail means a re-inspection (contre-visite) within two months. Marseille centres declare it at between ${h.prix(x.v.cv!.min.med)} and ${h.prix(x.v.cv!.max.med)} at the median. ${x.v.cv!.gratuite > 0 ? `${h.pct(x.v.cv!.gratuite, 0)} of them say it is free in some cases: ask before you book.` : 'None declares a free re-check in today’s file.'} You do not have to go back to the same centre.</p>
 <!--mini:contreVisite-->
 <p>Deadlines, the difference between major and critical defects, and what happens after two months are explained on the ${h.a('contre-visite', 're-inspection page')}.</p>
-<h2>Prices to check on the spot</h2>
+<h2>Contrôle technique prices in Marseille to check on the spot</h2>
 <p>${x.v.ancien != null ? `${h.pct(x.v.ancien, 0)} of the city’s centres declare a car price applied before 2023.` : ''} Many have simply kept their prices, but others may have raised them without updating their record. The price displayed at the desk, which is compulsory, is the one that applies. The asterisk in the list flags prices more than three years old. To pay less without leaving your district, the guide to a ${h.a('controle-technique-pas-cher', 'cheap contrôle technique')} gathers the useful habits.</p>`;
     },
   },

@@ -26,7 +26,7 @@ export default defineGuide({
     title: 'Contrôle technique à Reims : prix des centres, le moins cher',
     description: 'Prix du contrôle technique à Reims : tarif de chaque centre de la ville et de sa couronne, médiane de la Marne, le moins cher, contre-visite et moto du jour.',
     h1: 'Contrôle technique à Reims : le prix de chaque centre',
-    intro: 'Ce que chaque centre rémois et des communes de la couronne déclare comme tarif à la DGCCRF, classé par prix puis par distance.',
+    intro: 'Ce que chaque centre de Reims et des communes de la couronne déclare comme tarif de contrôle technique à la DGCCRF, classé par prix puis par distance.',
     resume: (h) => {
       const x = ville(h, SLUG), v = x.v;
       return `À Reims, le fichier des prix compte ${x.nb(v.n, 'centre de contrôle technique', 'centres de contrôle technique')} qui déclarent un tarif pour les voitures, et ${h.num(v.n15)} dans un rayon de 15 km. Un contrôle de voiture essence ou diesel y coûte ${h.prix(x.e!.med)} en médiane, entre ${h.prix(x.e!.min)} et ${h.prix(x.e!.max)} selon le centre : la ville est ${x.cmp(x.e!.med, x.natMed)} la médiane nationale (${h.prix(x.natMed)}) et ${x.cmp(x.e!.med, x.depMed)} la médiane de la Marne (${h.prix(x.depMed)}). ${v.moinsCher ? `Le centre le moins cher de la commune affiche ${h.prix(v.moinsCher.p)}, soit ${h.prix(x.e!.med - v.moinsCher.p)} de moins que la médiane rémoise.` : ''} Les prix viennent de la déclaration que chaque centre adresse à la DGCCRF et que l’État publie en données ouvertes ; ce site relit ce fichier chaque jour (dernier fichier : ${x.fichier}). Pour une électrique, une moto ou un camping-car, changez le véhicule dans l’outil : les centres équipés ne sont pas les mêmes et l’ordre de la liste change.`;
@@ -52,7 +52,7 @@ ${x.vehTable(`Prix médian par véhicule à Reims, dans les 15 km et en France, 
 <h2>Les communes de la couronne rémoise</h2>
 <p>Les communes qui touchent Reims accueillent souvent un centre dans leur zone d’activités. Le tableau les classe par distance, avec leur médiane et leur tarif le plus bas. Une différence de deux ou trois euros ne justifie pas un détour, mais un centre sur votre trajet habituel peut faire gagner du temps autant que de l’argent.</p>
 ${x.voisinesTable(`Communes autour de Reims : prix d’un contrôle voiture essence, fichier du ${x.fichier}`)}
-<h2>Électrique, hybride et gaz</h2>
+<h2>Contrôle technique à Reims : électrique, hybride et gaz</h2>
 <p>${v.s.el ? `Pour une voiture électrique, la médiane rémoise est de ${h.prix(v.s.el.med)}, ${x.cmp(v.s.el.med, x.e!.med)} l’essence.` : 'Les centres de Reims déclarent peu de tarifs pour l’électrique.'} Le supplément n’a pas de base réglementaire : c’est un choix commercial du centre. Pour les voitures au GPL ou au GNV, le contrôle ajoute l’examen de l’installation de gaz, ce qui explique un prix plus élevé là où il est déclaré. Le tableau par véhicule ci-dessus donne les médianes de chaque motorisation, et la page ${h.a('controle-technique-electrique', 'voiture électrique')} explique ce qui est contrôlé.</p>
 <h2>Les deux-roues</h2>
 <p>${v.s.m ? `Dans la commune, ${x.nb(v.s.m.n, 'centre déclare', 'centres déclarent')} un tarif moto, avec une médiane de ${h.prix(v.s.m.med)}.` : 'Aucun centre de la commune ne déclare encore de tarif moto dans le fichier du jour.'} ${v.s15.m ? `Dans les 15 km, ${x.nb(v.s15.m.n, 'centre le fait', 'centres le font')}.` : ''} Les motos, scooters et quads doivent pourtant passer le contrôle depuis 2024 : les plus anciens sont déjà en retard, ceux de 2020 et 2021 doivent passer en 2026. Le ${h.a('controle-technique-moto', 'guide du contrôle moto')} donne le calendrier exact.</p>
@@ -68,7 +68,7 @@ ${x.voisinesTable(`Communes autour de Reims : prix d’un contrôle voiture esse
     title: 'Contrôle technique in Reims: centre prices, the cheapest',
     description: 'Contrôle technique prices in Reims: each centre in the city and nearby towns, the Marne median, the cheapest, re-inspection and motorbikes. Daily price file.',
     h1: 'Contrôle technique in Reims: every centre’s price',
-    intro: 'What each centre in Reims and the surrounding towns declares as its price to the DGCCRF, sorted by price and then distance.',
+    intro: 'What each centre in Reims and the surrounding towns declares as its contrôle technique price to the DGCCRF, sorted by price and then distance.',
     resume: (h) => {
       const x = ville(h, SLUG), v = x.v;
       return `In Reims the price file lists ${x.nb(v.n, 'contrôle technique centre', 'contrôle technique centres')} declaring a car price, and ${h.num(v.n15)} within a 15 km radius. A petrol or diesel car test (the contrôle technique is France’s compulsory roadworthiness test) costs ${h.prix(x.e!.med)} at the median there, between ${h.prix(x.e!.min)} and ${h.prix(x.e!.max)} depending on the centre: the city is ${x.cmp(x.e!.med, x.natMed)} the national median (${h.prix(x.natMed)}) and ${x.cmp(x.e!.med, x.depMed)} the Marne median (${h.prix(x.depMed)}). ${v.moinsCher ? `The cheapest centre in the city charges ${h.prix(v.moinsCher.p)}, ${h.prix(x.e!.med - v.moinsCher.p)} below the Reims median.` : ''} Prices come from the declaration each centre sends to the DGCCRF, the consumer authority, which the state publishes as open data; this site rereads the file every day (latest file: ${x.fichier}). For an electric car, a motorbike or a motorhome, change the vehicle in the tool: the equipped centres differ and the order of the list changes.`;
@@ -94,7 +94,7 @@ ${x.vehTable(`Median price by vehicle in Reims, within 15 km and in France, file
 <h2>The towns around Reims</h2>
 <p>Towns bordering Reims often have a centre in their business area. The table lists them by distance, with their median and lowest price. Two or three euros do not justify a detour, but a centre on your usual route can save time as well as money.</p>
 ${x.voisinesTable(`Towns around Reims: price of a petrol car test, file of ${x.fichier}`)}
-<h2>Electric, hybrid and gas</h2>
+<h2>Contrôle technique in Reims: electric, hybrid and gas</h2>
 <p>${v.s.el ? `For an electric car the Reims median is ${h.prix(v.s.el.med)}, ${x.cmp(v.s.el.med, x.e!.med)} petrol.` : 'Reims centres declare few electric-car prices.'} The surcharge has no regulatory basis: it is the centre’s commercial choice. For LPG or CNG cars the test adds a check of the gas system, which explains a higher price where one is declared. The table by vehicle above gives the median for each engine type, and the page on ${h.a('controle-technique-electrique', 'electric cars')} explains what is checked.</p>
 <h2>Two-wheelers</h2>
 <p>${v.s.m ? `In the city, ${x.nb(v.s.m.n, 'centre declares', 'centres declare')} a motorcycle price, with a median of ${h.prix(v.s.m.med)}.` : 'No centre in the city declares a motorcycle price yet in today’s file.'} ${v.s15.m ? `Within 15 km, ${x.nb(v.s15.m.n, 'centre does', 'centres do')}.` : ''} Motorbikes, scooters and quads have had to be tested since 2024 all the same: the oldest are already overdue, those from 2020 and 2021 are due in 2026. The ${h.a('controle-technique-moto', 'motorcycle guide')} gives the exact timetable.</p>

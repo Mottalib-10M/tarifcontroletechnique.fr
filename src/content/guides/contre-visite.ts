@@ -23,7 +23,7 @@ export default defineGuide({
     title: 'Contre-visite du contrôle technique : prix et délai en 2026',
     description: 'Contre-visite du contrôle technique en 2026 : délai de deux mois, prix déclarés par les centres, gratuite ou payante, conduite en attendant, département.',
     h1: 'Contre-visite : délai, prix et cas de gratuité',
-    intro: 'Après un contrôle défavorable, vous avez deux mois. Voici la date limite pour votre cas, et ce que les centres déclarent faire payer.',
+    intro: 'Après un contrôle technique défavorable, vous avez deux mois pour la contre-visite. Voici la date limite pour votre cas, et ce que les centres déclarent faire payer.',
     resume: (h) => {
       const n = N(h);
       return `Une contre-visite est obligatoire quand le contrôle technique relève au moins une défaillance majeure ou critique. Elle doit être faite dans les deux mois qui suivent le contrôle, dans le centre de votre choix, et ne porte que sur les points à corriger. Son prix est libre, comme celui du contrôle : les centres en déclarent deux, un prix bas pour une simple vérification visuelle et un prix haut quand le véhicule doit repasser sur les bancs. En France, d’après le fichier public des prix du ${h.date(h.S.meta.fichier)}, la médiane du prix bas est de ${h.prix(n.cv.min.med)} et celle du prix haut de ${h.prix(n.cv.max.med)} pour une voiture ; ${h.pct(n.cv.gratuite, 0)} des centres annoncent une contre-visite gratuite dans certains cas. Passé le délai de deux mois, il faut repasser un contrôle complet, à ${h.prix(n.s.e.med)} en médiane. Avec une défaillance majeure, la voiture peut rouler jusqu’à la date limite ; avec une défaillance critique, seulement le jour du contrôle.`;
@@ -70,7 +70,7 @@ export default defineGuide({
     title: 'Contre-visite (re-inspection) in France: price and deadline',
     description: 'The contre-visite after a failed contrôle technique: two-month deadline, prices declared by centres, free or paid, driving in the meantime, by département.',
     h1: 'Contre-visite: deadline, price and when it is free',
-    intro: 'After a failed test you have two months. Here is the deadline for your case, and what centres declare they charge.',
+    intro: 'After a failed test you have two months for the contre-visite. Here is the deadline for your case, and what centres declare they charge.',
     resume: (h) => {
       const n = N(h);
       return `A contre-visite, or re-inspection, is compulsory when the contrôle technique finds at least one major or critical defect. It must be done within two months of the test, at any centre you choose, and only covers the items to be fixed. Its price is free, like the test’s: centres declare two, a low one for a visual check and a high one when the vehicle has to go back on the test equipment. Across France, according to the public price file of ${h.date(h.S.meta.fichier)}, the median low price is ${h.prix(n.cv.min.med)} and the median high price ${h.prix(n.cv.max.med)} for a car; ${h.pct(n.cv.gratuite, 0)} of centres say the re-check can be free in some cases. After the two months, you need a full test again, at ${h.prix(n.s.e.med)} at the median. With a major defect the car may be driven until the deadline; with a critical defect, only on the day of the test.`;
@@ -87,7 +87,7 @@ export default defineGuide({
     },
     body: (h) => {
       const n = N(h), x = extremes(h);
-      return `<h2>When is a re-inspection compulsory?</h2>
+      return `<h2>When is a contre-visite (re-inspection) compulsory?</h2>
 <p>The inspector grades every defect at one of three levels. A minor defect has no safety impact: it appears on the report, with no re-check. A major defect may compromise safety, the environment or other road users: the test is a fail and a re-inspection is compulsory. A critical defect is a direct danger: same obligation, plus a ban on driving after the day of the test. The categories are explained on the ${h.a('defaillances-controle-technique', 'defects page')}.</p>
 <p>The re-inspection does not repeat the whole test. The inspector only checks the items flagged as defective, hence a lower price than a test and a shorter visit, often a quarter of an hour.</p>
 <h2>The deadline: two months from the test</h2>

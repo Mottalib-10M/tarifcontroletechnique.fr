@@ -29,7 +29,7 @@ export default defineGuide({
     title: 'Contrôle technique à Lyon : prix des centres de la métropole',
     description: 'Contrôle technique à Lyon : prix de chaque centre, médiane par arrondissement, Villeurbanne et l’est lyonnais, électrique, contre-visite. Fichier du jour.',
     h1: 'Contrôle technique à Lyon et dans la métropole',
-    intro: 'Les prix déclarés à la DGCCRF par les centres de Lyon et des communes voisines, pour votre véhicule, du moins cher au plus cher.',
+    intro: 'Les prix du contrôle technique déclarés à la DGCCRF par les centres de Lyon et des communes voisines, pour votre véhicule, du moins cher au plus cher.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!;
       return `Dans Lyon même, un contrôle technique de voiture essence ou diesel se paie ${h.prix(x.e!.med)} en médiane, ${x.cmp(x.e!.med, x.natMed)} la médiane française (${h.prix(x.natMed)}). Les ${x.nb(x.v.n, 'centre agréé de la ville déclare', 'centres agréés de la ville déclarent')} des tarifs allant de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)}. La métropole change l’échelle : dans un rayon de 15 km, ${h.num(x.v.n15)} centres affichent une médiane de ${h.prix(x.e15!.med)}, et le moins cher, à ${mc15.v}, déclare ${h.prix(mc15.p)}, soit ${h.prix(x.e!.med - mc15.p)} de moins que la médiane lyonnaise. Pour une hybride ou une électrique, la médiane de la ville monte à ${x.v.s.el ? h.prix(x.v.s.el.med) : 'un niveau plus élevé'}. La contre-visite coûte entre ${h.prix(x.v.cv!.min.med)} et ${h.prix(x.v.cv!.max.med)} en médiane. Tous ces chiffres sont tirés du fichier public où chaque centre déclare ses prix à l’administration, relu ce jour (${x.fichier}) ; l’outil liste les centres autour de l’arrondissement ou de la commune que vous tapez.`;
@@ -45,7 +45,7 @@ export default defineGuide({
     },
     body: (h) => {
       const x = ville(h, SLUG), r = rives(h), vb = villeurbanne(h);
-      return `<h2>Peu de centres dans Lyon, beaucoup autour</h2>
+      return `<h2>Contrôle technique à Lyon : peu de centres en ville, beaucoup autour</h2>
 <p>Lyon intra-muros compte ${x.nb(x.v.n, 'centre', 'centres')} de contrôle technique qui déclarent un prix voiture. Ils sont concentrés là où l’on trouve encore des locaux d’activité : ${h.num(r.gauche)} sur la rive gauche du Rhône (3e, 6e, 7e et 8e arrondissements) et ${h.num(r.droite)} sur la rive droite et la Presqu’île, presque tous dans le 9e, vers Vaise. Le cœur historique, entre Rhône et Saône, n’en a pratiquement aucun.</p>
 ${x.arrTable(`Contrôle d’une voiture essence par code postal lyonnais, fichier du ${x.fichier}`)}
 <p>Hors de la ville, la métropole aligne ${h.num(x.v.n15)} centres dans un rayon de 15 km, installés dans les zones d’activité de l’est et du sud. Leur médiane, ${h.prix(x.e15!.med)}, est ${x.cmp(x.e15!.med, x.e!.med)} celle de Lyon. Le département du Rhône, métropole comprise, se situe à ${h.prix(x.depMed)}.</p>
@@ -72,7 +72,7 @@ ${x.voisinesTable(`Communes voisines de Lyon : contrôle d’une voiture essence
     title: 'Contrôle technique in Lyon: prices across the metro area',
     description: 'Contrôle technique in Lyon: every centre’s price, median by arrondissement, Villeurbanne and the eastern suburbs, electric cars, re-inspection. Today’s data.',
     h1: 'Contrôle technique in Lyon and its metro area',
-    intro: 'The prices that centres in Lyon and nearby towns declare to the DGCCRF, for your vehicle, from cheapest to dearest.',
+    intro: 'The contrôle technique prices that centres in Lyon and nearby towns declare to the DGCCRF, for your vehicle, from cheapest to dearest.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!;
       return `Inside Lyon itself, a contrôle technique (the compulsory French roadworthiness test) for a petrol or diesel car costs ${h.prix(x.e!.med)} at the median, ${x.cmp(x.e!.med, x.natMed)} the French median (${h.prix(x.natMed)}). The city’s ${x.nb(x.v.n, 'approved centre declares', 'approved centres declare')} prices from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}. The metro area changes the picture: within 15 km, ${h.num(x.v.n15)} centres show a median of ${h.prix(x.e15!.med)}, and the cheapest, in ${mc15.v}, declares ${h.prix(mc15.p)}, ${h.prix(x.e!.med - mc15.p)} below the Lyon median. For a hybrid or electric car the city median rises to ${x.v.s.el ? h.prix(x.v.s.el.med) : 'a higher level'}. A re-inspection (contre-visite) costs between ${h.prix(x.v.cv!.min.med)} and ${h.prix(x.v.cv!.max.med)} at the median. All these figures come from the public file in which each centre declares its prices to the authorities, read today (${x.fichier}); the tool lists the centres around the district or town you type.`;
@@ -88,7 +88,7 @@ ${x.voisinesTable(`Communes voisines de Lyon : contrôle d’une voiture essence
     },
     body: (h) => {
       const x = ville(h, SLUG), r = rives(h), vb = villeurbanne(h);
-      return `<h2>Few centres in Lyon, many around it</h2>
+      return `<h2>Contrôle technique in Lyon: few centres in the city, many around it</h2>
 <p>Lyon proper has ${x.nb(x.v.n, 'inspection centre', 'inspection centres')} declaring a car price. They sit where commercial premises still exist: ${h.num(r.gauche)} on the left bank of the Rhône (3rd, 6th, 7th and 8th arrondissements) and ${h.num(r.droite)} on the right bank and the Presqu’île, nearly all in the 9th, towards Vaise. The historic core between the Rhône and the Saône has practically none.</p>
 ${x.arrTable(`Petrol car test by Lyon postcode, file of ${x.fichier}`)}
 <p>Beyond the city, the metro area has ${h.num(x.v.n15)} centres within 15 km, set in the business parks to the east and south. Their median, ${h.prix(x.e15!.med)}, is ${x.cmp(x.e15!.med, x.e!.med)} Lyon’s. The Rhône département, metro area included, stands at ${h.prix(x.depMed)}.</p>

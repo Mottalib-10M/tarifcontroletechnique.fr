@@ -27,7 +27,7 @@ export default defineGuide({
     title: 'Contrôle technique à Nice : prix des centres, Côte d’Azur',
     description: 'Contrôle technique à Nice : prix de chaque centre, médianes Nice et Côte d’Azur, moins cher entre Antibes et Menton, scooter, contre-visite. Données du jour.',
     h1: 'Contrôle technique à Nice : prix et centres',
-    intro: 'Ce que déclarent les centres niçois et azuréens à la DGCCRF pour une voiture, un scooter ou une moto, et où payer moins.',
+    intro: 'Le prix du contrôle technique à Nice : ce que déclarent les centres niçois et azuréens à la DGCCRF pour une voiture, un scooter ou une moto, et où payer moins.',
     resume: (h) => {
       const x = ville(h, SLUG), r = rang(h), mc15 = x.v.moinsCher15!;
       return `Le contrôle technique d’une voiture essence ou diesel coûte ${h.prix(x.e!.med)} en médiane à Nice, ${x.cmp(x.e!.med, x.natMed)} la médiane française de ${h.prix(x.natMed)}. Dans le classement des départements, ${r.plusChers === 0 ? 'les Alpes-Maritimes sont le plus cher' : `${x.nb(r.plusChers, 'département seulement est plus cher', 'départements seulement sont plus chers')} que les Alpes-Maritimes`} parmi les ${h.num(r.n)} qui comptent au moins dix centres. La ville a ${x.nb(x.v.n, 'centre', 'centres')} déclarant un prix voiture, de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)} ; dans un rayon de 15 km, de Cagnes-sur-Mer à la vallée du Paillon, ${h.num(x.v.n15)} centres ont une médiane de ${h.prix(x.e15!.med)}, et le moins cher de ce rayon déclare ${h.prix(mc15.p)} à ${mc15.v}. La contre-visite se déclare entre ${h.prix(x.v.cv!.min.med)} et ${h.prix(x.v.cv!.max.med)} en médiane. Prix tirés du fichier public où chaque centre déclare ses tarifs à l’administration, relu ce jour (${x.fichier}).`;
@@ -72,7 +72,7 @@ ${x.voisinesTable(`Communes voisines de Nice : contrôle d’une voiture essence
     title: 'Contrôle technique in Nice: Riviera centres and prices',
     description: 'Contrôle technique in Nice: every centre’s price, city and Riviera medians, cheapest between Antibes and Menton, scooters, re-inspection. Today’s DGCCRF data.',
     h1: 'Contrôle technique in Nice: prices and centres',
-    intro: 'What centres in Nice and along the Riviera declare to the DGCCRF for a car, a scooter or a motorbike, and where to pay less.',
+    intro: 'What centres in Nice and along the Riviera declare to the DGCCRF for the contrôle technique of a car, a scooter or a motorbike, and where to pay less.',
     resume: (h) => {
       const x = ville(h, SLUG), r = rang(h), mc15 = x.v.moinsCher15!;
       return `A contrôle technique (France’s compulsory roadworthiness test) for a petrol or diesel car costs ${h.prix(x.e!.med)} at the median in Nice, ${x.cmp(x.e!.med, x.natMed)} the French median of ${h.prix(x.natMed)}. In the département ranking, ${r.plusChers === 0 ? 'Alpes-Maritimes is the dearest' : `only ${x.nb(r.plusChers, 'département is', 'départements are')} dearer than Alpes-Maritimes`} of the ${h.num(r.n)} with at least ten centres. The city has ${x.nb(x.v.n, 'centre', 'centres')} declaring a car price, from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}; within 15 km, from Cagnes-sur-Mer to the Paillon valley, ${h.num(x.v.n15)} centres have a median of ${h.prix(x.e15!.med)}, and the cheapest in that radius declares ${h.prix(mc15.p)} in ${mc15.v}. A re-inspection (contre-visite) is declared at between ${h.prix(x.v.cv!.min.med)} and ${h.prix(x.v.cv!.max.med)} at the median. Prices come from the public file in which every centre declares its rates to the authorities, read today (${x.fichier}).`;
@@ -96,7 +96,7 @@ ${x.vehTable(`Nice, 15 km around and France: median price by vehicle, file of ${
 <p>Within 15 km of Nice the tool finds ${h.num(x.v.n15)} centres, with a median of ${h.prix(x.e15!.med)}. The neighbouring towns, sorted by distance, show that gaps come down to individual centres more than to towns:</p>
 ${x.voisinesTable(`Towns near Nice: petrol car test, file of ${x.fichier}`)}
 <p>The cheapest in the radius, in ${x.v.moinsCher15!.v}, declares ${h.prix(x.v.moinsCher15!.p)}; inside Nice the lowest is ${h.prix(x.v.moinsCher!.p)} and the highest ${h.prix(x.v.plusCher!.p)}. On the Riviera distances are short but journeys slow: the Promenade, the Voie Mathis and the A8 motorway are busy at peak times. A slightly dearer centre you can reach without a jam may still be the right choice.</p>
-<h2>Is the price you were quoted high?</h2>
+<h2>Is the contrôle technique price you were quoted in Nice high?</h2>
 <p>With medians above the national level, a Nice price often looks expensive in absolute terms without being so locally. The mini calculator compares a given price with the Alpes-Maritimes median and the national deciles.</p>
 <!--mini:devis_06-->
 <p>If the price is well above the département median, the tool at the top of the page usually finds a cheaper centre a few kilometres away. Other levers (a free re-inspection, fixing small defects before the test) are in the guide to a ${h.a('controle-technique-pas-cher', 'cheap contrôle technique')}.</p>

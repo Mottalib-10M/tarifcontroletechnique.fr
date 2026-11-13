@@ -28,7 +28,7 @@ export default defineGuide({
     title: 'Contrôle technique à Grenoble : prix de chaque centre',
     description: 'Prix du contrôle technique à Grenoble : chaque centre de la ville et des vallées voisines, médiane de l’Isère, supplément électrique, moto et contre-visite.',
     h1: 'Contrôle technique à Grenoble : le prix de chaque centre',
-    intro: 'Les prix que déclarent les centres de Grenoble, d’Échirolles, de Saint-Martin-d’Hères et du reste de la cuvette, du moins cher au plus cher.',
+    intro: 'Les prix du contrôle technique que déclarent les centres de Grenoble, d’Échirolles, de Saint-Martin-d’Hères et du reste de la cuvette, du moins cher au plus cher.',
     resume: (h) => {
       const x = ville(h, SLUG), v = x.v, s = supp(h);
       return `Grenoble même ne compte que ${x.nb(v.n, 'centre de contrôle technique', 'centres de contrôle technique')} dans le fichier public des prix, mais la cuvette grenobloise en réunit ${h.num(v.n15)} dans un rayon de 15 km, d’Échirolles à Meylan et de Fontaine à Saint-Égrève. Dans la ville, le contrôle d’une voiture essence coûte ${h.prix(x.e!.med)} en médiane (de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)}) ; dans le rayon de 15 km, ${h.prix(x.e15!.med)}. L’Isère se situe ${x.cmp(x.depMed, x.natMed)} la médiane nationale de ${h.prix(x.natMed)}. ${s.g != null ? `Pour une voiture électrique, la médiane grenobloise atteint ${h.prix(v.s.el!.med)}, soit ${h.prix(s.g)} de plus que l’essence, quand l’écart national médian est de ${h.prix(s.n)}.` : ''} Ces chiffres viennent des déclarations de chaque centre à la DGCCRF, relues chaque jour (fichier du ${x.fichier}). Choisissez votre véhicule dans l’outil : la liste se réordonne et montre le centre le moins cher autour de votre commune.`;
@@ -50,7 +50,7 @@ export default defineGuide({
 ${x.vehTable(`Prix médian par véhicule à Grenoble, dans les 15 km et en France, fichier du ${x.fichier}`)}
 <h2>L’Isère, un grand département de centres</h2>
 <p>Avec ${h.num(x.dep.centres)} centres, l’Isère est l’un des départements les mieux pourvus de France. Sa médiane pour une voiture essence, ${h.prix(x.depMed)}, la classe au ${r.i}${r.i === 1 ? 'er' : 'e'} rang sur ${r.n} départements d’au moins dix centres, du moins cher au plus cher, ${x.cmp(x.depMed, x.natMed)} la médiane nationale. Le ${h.a('departements', 'classement des départements')} donne la même comparaison pour chaque véhicule.</p>
-<h2>Le supplément électrique</h2>
+<h2>Le supplément électrique au contrôle technique à Grenoble</h2>
 <p>${s.g != null ? `${s.g > s.n ? 'C’est la particularité grenobloise du fichier du jour : la' : 'Dans le fichier du jour, la'} médiane pour une électrique est de ${h.prix(v.s.el!.med)}, ${h.prix(s.g)} de plus que pour l’essence, quand l’écart médian national est de ${h.prix(s.n)}.` : 'Les centres de Grenoble déclarent peu de tarifs pour l’électrique.'} ${v.s15.el ? `Dans les 15 km, la médiane électrique est de ${h.prix(v.s15.el.med)}.` : ''} Rien n’impose un tel écart : le contrôle d’une électrique ne comporte pas de mesure des gaz d’échappement. Changer de véhicule dans l’outil réordonne la liste et fait remonter les centres qui appliquent le même prix à toutes les motorisations. Le détail est sur la page ${h.a('controle-technique-electrique', 'voiture électrique')}.</p>
 <!--mini:elecDept_38-->
 <h2>De Fontaine à Meylan</h2>
@@ -69,7 +69,7 @@ ${x.voisinesTable(`Communes autour de Grenoble : prix d’un contrôle voiture e
     title: 'Contrôle technique in Grenoble: every centre’s price',
     description: 'Contrôle technique prices in Grenoble: every centre in the city and nearby valleys, the Isère median, the electric-car surcharge, motorbikes and re-checks.',
     h1: 'Contrôle technique in Grenoble: every centre’s price',
-    intro: 'The prices declared by centres in Grenoble, Échirolles, Saint-Martin-d’Hères and the rest of the basin, from cheapest to dearest.',
+    intro: 'The contrôle technique prices declared by centres in Grenoble, Échirolles, Saint-Martin-d’Hères and the rest of the basin, from cheapest to dearest.',
     resume: (h) => {
       const x = ville(h, SLUG), v = x.v, s = supp(h);
       return `Grenoble itself has only ${x.nb(v.n, 'contrôle technique centre', 'contrôle technique centres')} in the public price file, but the Grenoble basin holds ${h.num(v.n15)} within a 15 km radius, from Échirolles to Meylan and from Fontaine to Saint-Égrève. In the city a petrol car test (the contrôle technique is France’s compulsory roadworthiness test) costs ${h.prix(x.e!.med)} at the median (from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}); within 15 km, ${h.prix(x.e15!.med)}. The Isère sits ${x.cmp(x.depMed, x.natMed)} the national median of ${h.prix(x.natMed)}. ${s.g != null ? `For an electric car the Grenoble median reaches ${h.prix(v.s.el!.med)}, ${h.prix(s.g)} more than petrol, while the national median gap is ${h.prix(s.n)}.` : ''} These figures come from each centre’s declaration to the DGCCRF, reread every day (file of ${x.fichier}). Pick your vehicle in the tool: the list reorders itself and shows the cheapest centre around your town.`;
@@ -91,7 +91,7 @@ ${x.voisinesTable(`Communes autour de Grenoble : prix d’un contrôle voiture e
 ${x.vehTable(`Median price by vehicle in Grenoble, within 15 km and in France, file of ${x.fichier}`)}
 <h2>The Isère, a département with many centres</h2>
 <p>With ${h.num(x.dep.centres)} centres, the Isère is one of France’s best-served départements. Its median for a petrol car, ${h.prix(x.depMed)}, ranks it ${r.i}${ord(r.i)} of ${r.n} départements with at least ten centres, from cheapest to dearest, ${x.cmp(x.depMed, x.natMed)} the national median. The ${h.a('departements', 'département ranking')} gives the same comparison for every vehicle.</p>
-<h2>The electric surcharge</h2>
+<h2>The electric surcharge on a contrôle technique in Grenoble</h2>
 <p>${s.g != null ? `${s.g > s.n ? 'This is Grenoble’s distinctive feature in today’s file: the' : 'In today’s file the'} median for an electric car is ${h.prix(v.s.el!.med)}, ${h.prix(s.g)} more than for petrol, while the national median gap is ${h.prix(s.n)}.` : 'Grenoble centres declare few electric-car prices.'} ${v.s15.el ? `Within 15 km the electric median is ${h.prix(v.s15.el.med)}.` : ''} Nothing requires such a gap: testing an electric car involves no exhaust gas measurement. Changing the vehicle in the tool reorders the list and brings up the centres that charge the same for every engine type. Details are on the ${h.a('controle-technique-electrique', 'electric car page')}.</p>
 <!--mini:elecDept_38-->
 <h2>From Fontaine to Meylan</h2>

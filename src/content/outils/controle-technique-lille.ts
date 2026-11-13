@@ -25,7 +25,7 @@ export default defineGuide({
     title: 'Contrôle technique à Lille : prix dans toute la métropole',
     description: 'Contrôle technique à Lille : prix de chaque centre, médianes ville et métropole, Roubaix et Tourcoing, Nord et Pas-de-Calais, contre-visite. Fichier du jour.',
     h1: 'Contrôle technique à Lille : les prix de la métropole',
-    intro: 'Les tarifs que les centres de Lille et de la métropole lilloise déclarent à la DGCCRF, triés pour votre véhicule.',
+    intro: 'Les tarifs du contrôle technique que les centres de Lille et de la métropole lilloise déclarent à la DGCCRF, triés pour votre véhicule.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!, rp = rangPrix(h);
       return `Faire contrôler sa voiture à Lille coûte ${h.prix(x.e!.med)} en médiane pour une essence ou une diesel, ${x.cmp(x.e!.med, x.natMed)} la médiane nationale de ${h.prix(x.natMed)}. Le Nord se place au ${h.num(rp.r)}e rang sur ${h.num(rp.n)} départements d’au moins dix centres, classés du moins cher au plus cher. Dans la ville, ${x.nb(x.v.n, 'centre déclare', 'centres déclarent')} un prix voiture, de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)}. La métropole offre un choix rare : ${h.num(x.v.n15)} centres dans un rayon de 15 km, pour une médiane de ${h.prix(x.e15!.med)}, et un prix le plus bas de ${h.prix(mc15.p)} à ${mc15.v}. La contre-visite se déclare entre ${h.prix(x.v.cv!.min.med)} et ${h.prix(x.v.cv!.max.med)} en médiane. Ces prix sont ceux que chaque centre transmet à l’administration, dans le fichier public relu ce jour (${x.fichier}) ; l’outil trie les centres autour de votre commune, sans compte ni réservation.`;
@@ -45,7 +45,7 @@ export default defineGuide({
 <p>Lille, Roubaix, Tourcoing, Villeneuve-d’Ascq et une constellation de communes forment une agglomération continue, et les centres de contrôle y sont nombreux : ${h.num(x.v.n15)} dans un rayon de 15 km autour de Lille. Le département du Nord en compte ${h.num(DS(h)['59'].centres)}, ce qui le place ${rangCentres(h) === 1 ? 'en tête des départements français' : `au ${h.num(rangCentres(h))}e rang des départements`}. Cette densité se lit dans les prix : la médiane de la métropole, ${h.prix(x.e15!.med)}, est ${x.cmp(x.e15!.med, x.natMed)} la médiane nationale.</p>
 ${x.voisinesTable(`Communes voisines de Lille : contrôle d’une voiture essence, fichier du ${x.fichier}`)}
 <p>Le tableau, trié par distance, montre les communes qui touchent Lille. Plus loin, au-delà de 10 km, l’outil fait apparaître les centres de Roubaix et de Tourcoing. Le moins cher du rayon de 15 km est aujourd’hui à ${x.v.moinsCher15!.v} (${h.prix(x.v.moinsCher15!.p)}).</p>
-<h2>Dans Lille</h2>
+<h2>Le contrôle technique dans Lille même</h2>
 <p>La ville elle-même compte ${x.nb(x.v.n, 'centre', 'centres')} qui déclarent un prix voiture, pour une médiane de ${h.prix(x.e!.med)}. Le moins cher déclare ${h.prix(x.v.moinsCher!.p)}, le plus cher ${h.prix(x.v.plusCher!.p)}. ${x.v.ancien != null ? `${h.pct(x.v.ancien, 0)} de ces centres déclarent un tarif d’avant 2023 : l’astérisque de la liste les signale, et un appel avant de venir évite une mauvaise surprise.` : ''}</p>
 ${x.vehTable(`Lille, 15 km autour et France : prix médian par véhicule, fichier du ${x.fichier}`)}
 <p>${x.v.s.el ? `L’électrique est déclarée ${h.prix(x.v.s.el.med)} en médiane dans la ville, ${x.cmp(x.v.s.el.med, x.e!.med)} l’essence.` : ''} Le guide ${h.a('controle-technique-electrique', 'du contrôle technique d’une électrique')} explique pourquoi certains centres facturent un supplément et d’autres non.</p>
@@ -68,7 +68,7 @@ ${x.vehTable(`Lille, 15 km autour et France : prix médian par véhicule, fichie
     title: 'Contrôle technique in Lille: metro area centre prices',
     description: 'Contrôle technique in Lille: every centre’s price, city and metro medians, Roubaix and Tourcoing, Nord and Pas-de-Calais, re-inspection. Today’s DGCCRF file.',
     h1: 'Contrôle technique in Lille: prices across the metro area',
-    intro: 'The prices that centres in Lille and its metro area declare to the DGCCRF, sorted for your vehicle.',
+    intro: 'The contrôle technique prices that centres in Lille and its metro area declare to the DGCCRF, sorted for your vehicle.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!, rp = rangPrix(h);
       return `Getting a car through its contrôle technique (France’s compulsory roadworthiness test) in Lille costs ${h.prix(x.e!.med)} at the median for petrol or diesel, ${x.cmp(x.e!.med, x.natMed)} the national median of ${h.prix(x.natMed)}. The Nord département ranks ${h.num(rp.r)} of ${h.num(rp.n)} départements with at least ten centres, from cheapest to dearest. In the city, ${x.nb(x.v.n, 'centre declares', 'centres declare')} a car price, from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)}. The metro area offers unusual choice: ${h.num(x.v.n15)} centres within 15 km, with a median of ${h.prix(x.e15!.med)} and a lowest price of ${h.prix(mc15.p)} in ${mc15.v}. A re-inspection (contre-visite) is declared at between ${h.prix(x.v.cv!.min.med)} and ${h.prix(x.v.cv!.max.med)} at the median. These are the prices each centre reports to the authorities, in the public file read today (${x.fichier}); the tool sorts the centres around your town, with no account and no booking.`;
@@ -88,7 +88,7 @@ ${x.vehTable(`Lille, 15 km autour et France : prix médian par véhicule, fichie
 <p>Lille, Roubaix, Tourcoing, Villeneuve-d’Ascq and a cluster of smaller towns form one continuous urban area, and inspection centres are plentiful: ${h.num(x.v.n15)} within 15 km of Lille. The Nord département has ${h.num(DS(h)['59'].centres)}, which ranks it ${rangCentres(h) === 1 ? 'first among French départements' : `${h.num(rangCentres(h))} among départements`}. That density shows in the prices: the metro median, ${h.prix(x.e15!.med)}, is ${x.cmp(x.e15!.med, x.natMed)} the national median.</p>
 ${x.voisinesTable(`Towns near Lille: petrol car test, file of ${x.fichier}`)}
 <p>The table, sorted by distance, shows the towns bordering Lille. Further out, beyond 10 km, the tool brings in the centres of Roubaix and Tourcoing. The cheapest in the 15 km radius is today in ${x.v.moinsCher15!.v} (${h.prix(x.v.moinsCher15!.p)}).</p>
-<h2>Inside Lille</h2>
+<h2>Contrôle technique inside Lille</h2>
 <p>The city itself has ${x.nb(x.v.n, 'centre', 'centres')} declaring a car price, with a median of ${h.prix(x.e!.med)}. The cheapest declares ${h.prix(x.v.moinsCher!.p)}, the dearest ${h.prix(x.v.plusCher!.p)}. ${x.v.ancien != null ? `${h.pct(x.v.ancien, 0)} of these centres declare a price from before 2023: the asterisk in the list flags them, and a call before you go avoids a nasty surprise.` : ''}</p>
 ${x.vehTable(`Lille, 15 km around and France: median price by vehicle, file of ${x.fichier}`)}
 <p>${x.v.s.el ? `Electric cars are declared at ${h.prix(x.v.s.el.med)} at the median in the city, ${x.cmp(x.v.s.el.med, x.e!.med)} petrol.` : ''} The ${h.a('controle-technique-electrique', 'electric car guide')} explains why some centres add a surcharge and others do not.</p>

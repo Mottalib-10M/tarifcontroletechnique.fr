@@ -65,7 +65,7 @@ export default defineGuide({
     title: 'Motorcycle contrôle technique in France: prices and dates',
     description: 'Motorcycle contrôle technique in France, 2026: price declared by each equipped centre, median, re-inspection, timetable by registration year, then 3-yearly.',
     h1: 'Motorcycle contrôle technique: prices and timetable',
-    intro: 'Centres equipped for motorcycles around your town, their declared price and the date of your first test.',
+    intro: 'Centres equipped for the motorcycle contrôle technique around your town, their declared price and the date of your first test.',
     resume: (h) => {
       const s = S(h), n = N(h);
       return `The French contrôle technique for motorcycles costs ${h.prix(s.m.med)} at the median, according to the prices declared by the ${h.num(n.centresMoto)} centres equipped for two-wheelers in the DGCCRF’s public file of ${h.date(h.S.meta.fichier)}. One centre in ten is at ${h.prix(s.m.p10)} or less, one in ten at ${h.prix(s.m.p90)} or more. The re-inspection (contre-visite) is declared at between ${h.prix(n.cvm.min.med)} and ${h.prix(n.cvm.max.med)} at the median. Compulsory since 15 April 2024 for motorbikes, scooters, trikes, quads and microcars, the test follows a timetable based on the year of first registration: the oldest motorbikes should already have been tested, those from 2020 and 2021 are tested in 2026, the newest in the six months before their fifth anniversary. It is then renewed every three years. Because only ${h.pct(n.centresMoto / n.centres, 0)} of centres test two-wheelers, the tool above searches further if needed: type your town to see the equipped centres around you.`;
@@ -81,7 +81,7 @@ export default defineGuide({
     },
     body: (h) => {
       const s = S(h), n = N(h), sm = sansMoto(h);
-      return `<h2>The price of a motorcycle test, centre by centre</h2>
+      return `<h2>The price of a motorcycle contrôle technique, centre by centre</h2>
 <p>Around the town you choose, the tool shows the centres that declare a price for the selected category: motorbike, moped, quad, trike or microcar. The test price, the re-inspection range and the date of the price come from the public file in which every centre declares its prices. For motorbikes the national median is ${h.prix(s.m.med)}, with extremes from ${h.prix(s.m.min)} to ${h.prix(s.m.max)}.</p>
 <p>Centres equipped for two-wheelers are scarce: ${h.num(n.centresMoto)} out of ${h.num(n.centres)}. When fewer than five are within the chosen distance, the tool widens to the five nearest, and the actual radius appears in the result heading. ${sm.length ? `Today, no centre declares a motorcycle price in ${sm.length > 1 ? `${h.num(sm.length)} départements (${sm.join(', ')})` : `one département (${sm[0]})`}.` : 'Today every département has at least one centre declaring a motorcycle price.'}</p>
 <h2>The first-test timetable</h2>

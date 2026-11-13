@@ -25,7 +25,7 @@ export default defineGuide({
     title: 'Contrôle technique à Bordeaux : prix des centres girondins',
     description: 'Contrôle technique à Bordeaux : prix de chaque centre, médianes ville et métropole, rive droite, contre-visite parfois gratuite, Gironde. Fichier du jour.',
     h1: 'Contrôle technique à Bordeaux et dans la métropole',
-    intro: 'Ce que déclarent à la DGCCRF les centres de Bordeaux et des communes de la métropole, rive gauche comme rive droite.',
+    intro: 'Le prix du contrôle technique à Bordeaux, tel que le déclarent à la DGCCRF les centres de la ville et des communes de la métropole, rive gauche comme rive droite.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!;
       const meme = mc15.v.startsWith('Bordeaux');
@@ -50,7 +50,7 @@ ${x.voisinesTable(`Communes voisines de Bordeaux : contrôle d’une voiture ess
 <p>La Garonne sépare la ville de ses communes de la rive droite, reliées par une poignée de ponts souvent saturés. ${rd.length ? `De ce côté du fleuve, le fichier du jour donne : ${rd.map((c) => `${c.nom} ${h.prix(c.s.med)} (${x.nb(c.s.n, 'centre', 'centres')})`).join(', ')}.` : 'Les communes de la rive droite n’apparaissent pas dans le tableau du jour.'} Pour un habitant de la Bastide, de Cenon ou de Lormont, un centre de la même rive évite une traversée aux heures de pointe, qui coûte souvent plus que l’écart de prix.</p>
 <p>${x.v.moinsCher15!.v.startsWith('Bordeaux') ? `Fait notable, le centre le moins cher de tout le rayon de 15 km est dans Bordeaux même : ${h.prix(x.v.moinsCher15!.p)}, quand le plus cher de la ville déclare ${h.prix(x.v.plusCher!.p)}.` : `Le moins cher du rayon de 15 km est à ${x.v.moinsCher15!.v} (${h.prix(x.v.moinsCher15!.p)}) ; dans la ville, le plus bas est à ${h.prix(x.v.moinsCher!.p)}.`} Le mini-simulateur situe un prix dans le classement de la Gironde.</p>
 <!--mini:depPrix_33-->
-<h2>Le prix selon le véhicule</h2>
+<h2>Le prix du contrôle technique à Bordeaux selon le véhicule</h2>
 ${x.vehTable(`Bordeaux, 15 km autour et France : prix médian par véhicule, fichier du ${x.fichier}`)}
 <p>Le tableau compare la ville, la métropole et la France. ${x.v.s.el ? `L’électrique est déclarée ${h.prix(x.v.s.el.med)} en médiane dans Bordeaux, ${x.cmp(x.v.s.el.med, x.e!.med)} l’essence.` : ''} ${x.v.s.m ? `Pour une moto, ${x.nb(x.v.s.m.n, 'centre de la ville est équipé', 'centres de la ville sont équipés')}` : 'Pour une moto, peu de centres de la ville sont équipés'}${x.v.s15.m ? `, ${h.num(x.v.s15.m.n)} dans les 15 km` : ''} ; le calendrier des deux-roues est expliqué dans le guide ${h.a('controle-technique-moto', 'du contrôle technique moto')}.</p>
 <h2>Une contre-visite ${x.v.cv!.gratuite > h.S.national.cv.gratuite ? 'plus souvent gratuite qu’ailleurs' : 'à comparer aussi'}</h2>
@@ -68,7 +68,7 @@ ${x.vehTable(`Bordeaux, 15 km autour et France : prix médian par véhicule, fic
     title: 'Contrôle technique in Bordeaux: Gironde centre prices',
     description: 'Contrôle technique in Bordeaux: every centre’s price, city and metro medians, right bank, re-inspection sometimes free, Gironde ranking. Today’s DGCCRF file.',
     h1: 'Contrôle technique in Bordeaux and its metro area',
-    intro: 'What centres in Bordeaux and the towns of its metro area declare to the DGCCRF, on the left bank and the right.',
+    intro: 'The contrôle technique prices that centres in Bordeaux and the towns of its metro area declare to the DGCCRF, on the left bank and the right.',
     resume: (h) => {
       const x = ville(h, SLUG), mc15 = x.v.moinsCher15!;
       const meme = mc15.v.startsWith('Bordeaux');
@@ -93,7 +93,7 @@ ${x.voisinesTable(`Towns near Bordeaux: petrol car test, file of ${x.fichier}`)}
 <p>The Garonne separates the city from its right-bank towns, linked by a handful of often congested bridges. ${rd.length ? `On that side of the river, today’s file gives: ${rd.map((c) => `${c.nom} ${h.prix(c.s.med)} (${x.nb(c.s.n, 'centre', 'centres')})`).join(', ')}.` : 'Right-bank towns do not appear in today’s table.'} If you live in La Bastide, Cenon or Lormont, a centre on the same bank saves a rush-hour crossing, which often costs more than the price gap.</p>
 <p>${x.v.moinsCher15!.v.startsWith('Bordeaux') ? `Notably, the cheapest centre in the whole 15 km radius is in Bordeaux itself: ${h.prix(x.v.moinsCher15!.p)}, while the dearest in the city declares ${h.prix(x.v.plusCher!.p)}.` : `The cheapest within 15 km is in ${x.v.moinsCher15!.v} (${h.prix(x.v.moinsCher15!.p)}); in the city the lowest is ${h.prix(x.v.moinsCher!.p)}.`} The mini calculator places a price within the Gironde ranking.</p>
 <!--mini:depPrix_33-->
-<h2>Price by vehicle</h2>
+<h2>Contrôle technique prices in Bordeaux by vehicle</h2>
 ${x.vehTable(`Bordeaux, 15 km around and France: median price by vehicle, file of ${x.fichier}`)}
 <p>The table compares the city, the metro area and France. ${x.v.s.el ? `Electric cars are declared at ${h.prix(x.v.s.el.med)} at the median in Bordeaux, ${x.cmp(x.v.s.el.med, x.e!.med)} petrol.` : ''} ${x.v.s.m ? `For a motorbike, ${x.nb(x.v.s.m.n, 'centre in the city is', 'centres in the city are')} equipped` : 'For a motorbike, few centres in the city are equipped'}${x.v.s15.m ? `, ${h.num(x.v.s15.m.n)} within 15 km` : ''}; the two-wheeler timetable is in the ${h.a('controle-technique-moto', 'motorcycle guide')}.</p>
 <h2>A re-inspection ${x.v.cv!.gratuite > h.S.national.cv.gratuite ? 'free more often than elsewhere' : 'worth comparing too'}</h2>

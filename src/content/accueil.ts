@@ -93,7 +93,7 @@ ${villesTable(h)}
     title: 'Contrôle technique price in France 2026: every centre',
     description: 'Contrôle technique prices in France for 2026 near you: every approved centre, test and re-inspection, petrol, diesel, electric, motorbike. Today’s DGCCRF file.',
     h1: 'Contrôle technique prices near you',
-    intro: 'Type your town: the approved centres around it, their declared price for your vehicle, the re-inspection and the cheapest. No account, no booking.',
+    intro: 'Type your town: the approved centres around it, their declared contrôle technique price for your vehicle, the re-inspection and the cheapest. No account, no booking.',
     resume: (h) => {
       const s = S(h), n = N(h);
       return `A contrôle technique, France’s compulsory roadworthiness test, costs ${h.prix(s.e.med)} at the median for a car in 2026, petrol and diesel alike: half of the ${h.num(n.centresVp)} approved centres that test cars charge less, half charge more. One centre in ten is at ${h.prix(s.e.p10)} or less, one in ten at ${h.prix(s.e.p90)} or more, and the extremes run from ${h.prix(s.e.min)} to ${h.prix(s.e.max)}. Hybrids and electric cars cost ${h.prix(s.el.med)} at the median, motorcycles ${h.prix(s.m.med)}, and a re-inspection (contre-visite) between ${h.prix(n.cv.min.med)} and ${h.prix(n.cv.max.med)}. These figures come from neither a survey nor a sample: every centre declares its prices in a public file kept by the DGCCRF, the consumer protection authority, published on data.gouv.fr under an open licence, and this site reads it every day (file of ${h.date(h.S.meta.fichier)}). Since prices are free, two neighbouring centres are often more than twenty euros apart: comparing before you book is the only way to pay less.`;
@@ -122,7 +122,7 @@ ${histTable(h)}
 <p>The file separates light vehicles (cars, vans, motorhomes and 4x4s up to 3.5 tonnes) and, since 2024, motorbikes, scooters, trikes, quads and microcars. Each centre only tests the vehicles it is equipped and approved for: only ${h.num(n.centresMoto)} centres declare a motorcycle price, against ${h.num(n.centresVp)} for cars.</p>
 ${vehTable(h)}
 <p>Three gaps show up everywhere. Gas (LPG or CNG) costs more than petrol at ${h.pct(n.gazPlusCher, 0)} of centres, because the test adds a check of the tank and fittings. Hybrids and electric cars cost more at ${h.pct(n.elecPlusCher, 0)} of centres, a pricing habit more than a technical need. Motorhomes and vans, which take longer to get onto the lane, cost a few euros more.</p>
-<h2>Prices vary widely between départements</h2>
+<h2>Contrôle technique prices in France vary widely between départements</h2>
 <p>Among départements with at least ten centres, the lowest medians for a petrol car are in ${bas}. The highest: ${haut}. The gap between the two ends of the ranking is more than ${h.prix(c[c.length - 1].med - c[0].med)} for the same test, done with the same equipment under the same regulation.</p>
 <p>Property costs explain part of it: an inspection centre needs several hundred square metres under cover. Local competition explains the rest. Where several centres share a business park, prices stay in line; where one centre is alone for twenty kilometres around, it has no reason to cut its own. The ${h.a('departements', 'départements page')} ranks all 101 départements, for each vehicle.</p>
 <!--mini:depPrix-->

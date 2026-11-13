@@ -26,7 +26,7 @@ export default defineGuide({
     title: 'Contrôle technique véhicule de collection : règles et prix',
     description: 'Contrôle technique d’un véhicule de collection : tous les cinq ans, dispense avant 1960, carte grise collection dès 30 ans, prix médian déclaré par les centres.',
     h1: 'Contrôle technique d’un véhicule de collection',
-    intro: 'Quand le passer, quand on en est dispensé, et ce que les centres déclarent comme prix pour une voiture de collection.',
+    intro: 'Quand passer le contrôle technique d’un véhicule de collection, quand on en est dispensé, et ce que les centres déclarent comme prix pour ces voitures.',
     resume: (h) => {
       const n = NAT(h), C = h.P.collection;
       return `Un véhicule immatriculé avec une carte grise « collection » passe le contrôle technique tous les ${h.num(C.periodicite_ans)} ans, au lieu de tous les deux ans pour une voiture ordinaire, et il en est dispensé s’il a été mis en circulation avant le 1er janvier ${C.dispense_avant_annee}. La carte grise de collection est réservée aux véhicules de plus de ${h.num(C.age_min_ans)} ans ; une voiture ancienne restée en carte grise normale suit, elle, le rythme ordinaire. Côté prix, ${h.num(n.co.n)} centres déclarent un tarif pour une voiture de collection à essence dans le fichier public de la DGCCRF, avec une médiane de ${h.prix(n.co.med)}, contre ${h.prix(n.e.med)} pour une voiture essence ordinaire. Un centre sur dix demande ${h.prix(n.co.p10)} ou moins, un sur dix ${h.prix(n.co.p90)} ou plus. Ces chiffres sont relus chaque jour (fichier du ${h.date(h.S.meta.fichier)}). Le mini-simulateur ci-dessous indique, à partir de l’année de mise en circulation et du dernier contrôle, si vous êtes dispensé et quand repasser.`;
@@ -75,7 +75,7 @@ ${h.table(['Département', 'Médiane collection', 'Médiane essence'], r.slice(0
     title: 'Classic car contrôle technique in France: rules and price',
     description: 'Contrôle technique for a French classic vehicle: every five years, exempt before 1960, classic registration from 30 years, and the median price centres declare.',
     h1: 'Contrôle technique for a classic vehicle',
-    intro: 'When it is due, when you are exempt, and what centres declare as the price for a classic car.',
+    intro: 'When the contrôle technique of a classic car is due, when you are exempt, and what centres declare as the price for it.',
     resume: (h) => {
       const n = NAT(h), C = h.P.collection;
       return `A vehicle registered with a “collection” (classic) registration certificate takes the contrôle technique, France’s compulsory roadworthiness test, every ${h.num(C.periodicite_ans)} years instead of every two years for an ordinary car, and is exempt altogether if it was first registered before 1 January ${C.dispense_avant_annee}. The classic registration is reserved for vehicles more than ${h.num(C.age_min_ans)} years old; an old car kept on an ordinary registration follows the ordinary timetable. On price, ${h.num(n.co.n)} centres declare a price for a petrol classic car in the DGCCRF’s public file, with a median of ${h.prix(n.co.med)}, against ${h.prix(n.e.med)} for an ordinary petrol car. One centre in ten charges ${h.prix(n.co.p10)} or less, one in ten ${h.prix(n.co.p90)} or more. These figures are reread every day (file of ${h.date(h.S.meta.fichier)}). The mini calculator below tells you, from the year of first registration and the last test, whether you are exempt and when the next test is due.`;
@@ -103,7 +103,7 @@ ${h.table(['Département', 'Médiane collection', 'Médiane essence'], r.slice(0
 <li><strong>Ordinary registration, whatever the age</strong>: a test every two years, like any private car.</li>
 </ul>
 <p>The mini calculator at the top of the page covers these three cases. It works to the year: the exact date of the next test is the date of the last one, five years on. The Service Public page on testing classic vehicles is the reference in case of doubt, and the guide on ${h.a('quand-faire-controle-technique', 'when the test is due')} covers ordinary cars.</p>
-<h2>What centres declare for a classic car</h2>
+<h2>What centres declare for a classic car contrôle technique</h2>
 <p>The DGCCRF file has a separate line for petrol classic cars. ${h.num(n.co.n)} centres declare a price for it, with a median of ${h.prix(n.co.med)} and an average of ${h.prix(n.co.moy)}. Eight centres in ten sit between ${h.prix(n.co.p10)} and ${h.prix(n.co.p90)}. For comparison, the median for an ordinary petrol car is ${h.prix(n.e.med)}: in ${h.pct(egalEssence(h), 0)} of départements the classic median is exactly the petrol one, and it is lower in ${h.pct(moinsQueEssence(h), 0)} of them. In other words, most centres charge a classic car like an ordinary one.</p>
 <p>Among départements where at least five centres declare this price, the lowest medians are in ${bas}. The highest: ${haut}. The tool on the ${h.a('home', 'home page')} has no classic-car line by default, but the ${h.a('departements', 'départements page')} and the table below are enough to place a price.</p>
 ${h.table(['Département', 'Classic median', 'Petrol median'], r.slice(0, 10).map((x) => [x.nom, h.prix(x.med), h.prix(D(h)[x.d].s.e!.med)]), `The ten cheapest départements for a classic car, file of ${h.date(h.S.meta.fichier)}`, ['l', 'r', 'r'])}

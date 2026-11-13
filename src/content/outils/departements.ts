@@ -42,7 +42,7 @@ export default defineGuide({
     body: (h) => {
       const r = rang(h), s = h.S.national.s;
       const rm = rang(h, 'm', 5), rel = rang(h, 'el');
-      return `<h2>Le classement, véhicule par véhicule</h2>
+      return `<h2>Le prix du contrôle technique par département, véhicule par véhicule</h2>
 <p>Le tableau de l’outil donne, pour chaque département, le nombre de centres agréés, la médiane du prix déclaré pour le véhicule choisi, l’écart avec la médiane nationale et la part des centres qui annoncent une contre-visite gratuite dans certains cas. Le tri par défaut place les moins chers en tête ; deux boutons inversent l’ordre ou reviennent à l’ordre des numéros.</p>
 <p>Pour une voiture essence, ${h.pct(dansFourchette(h), 0)} des départements ont une médiane comprise entre ${h.prix(s.e.p10)} et ${h.prix(s.e.p90)}, la fourchette où se trouvent huit centres sur dix en France. Les écarts se creusent sur les véhicules que peu de centres contrôlent. Pour une moto, parmi les départements qui ont au moins cinq centres équipés, la médiane va de ${h.prix(rm[0].med)} (${rm[0].nom}) à ${h.prix(rm[rm.length - 1].med)} (${rm[rm.length - 1].nom}). Pour une électrique, de ${h.prix(rel[0].med)} (${rel[0].nom}) à ${h.prix(rel[rel.length - 1].med)} (${rel[rel.length - 1].nom}).</p>
 <h2>Ce que mesure une médiane de département</h2>
@@ -64,7 +64,7 @@ export default defineGuide({
     title: 'Contrôle technique price by département: 2026 ranking',
     description: 'Contrôle technique prices in all 101 French départements: median by vehicle, cheapest centre, free re-inspection, gap with France. Today’s DGCCRF price file.',
     h1: 'Contrôle technique prices by département',
-    intro: 'All 101 départements ranked by declared median price, for a car, a motorbike or a motorhome, with the re-inspection.',
+    intro: 'All 101 départements ranked by declared median contrôle technique price, for a car, a motorbike or a motorhome, with the re-inspection.',
     resume: (h) => {
       const r = rang(h), s = h.S.national.s.e;
       return `The median price of a petrol car contrôle technique runs from ${h.prix(r[0].med)} in the cheapest département, ${r[0].nom}, to ${h.prix(r[r.length - 1].med)} in the dearest, ${r[r.length - 1].nom}, among départements with at least ten centres. The French median is ${h.prix(s.med)}. The ${h.prix(r[r.length - 1].med - r[0].med)} gap between the two ends separates strictly identical tests: the same list of items, the same approved equipment, the same defect criteria. The ranking above is worked out from the prices each of the ${h.num(h.S.national.centres)} approved centres declares in the DGCCRF’s public file, read today (${h.date(h.S.meta.fichier)}). Pick a vehicle to redo the ranking: the gaps differ for a motorbike, an electric car or a motorhome, because not every centre tests them. Click a département to see its median, rank, re-inspection price and cheapest centre.`;
@@ -81,7 +81,7 @@ export default defineGuide({
     body: (h) => {
       const r = rang(h), s = h.S.national.s;
       const rm = rang(h, 'm', 5), rel = rang(h, 'el');
-      return `<h2>The ranking, vehicle by vehicle</h2>
+      return `<h2>Contrôle technique price by département, vehicle by vehicle</h2>
 <p>The tool’s table gives, for each département, the number of approved centres, the median declared price for the chosen vehicle, the gap with the French median and the share of centres saying the re-check is free in some cases. The default order puts the cheapest first; two buttons reverse it or switch to département numbers.</p>
 <p>For a petrol car, ${h.pct(dansFourchette(h), 0)} of départements have a median between ${h.prix(s.e.p10)} and ${h.prix(s.e.p90)}, the band that holds eight centres in ten across France. The gaps widen for vehicles that few centres test. For a motorbike, among départements with at least five equipped centres, the median runs from ${h.prix(rm[0].med)} (${rm[0].nom}) to ${h.prix(rm[rm.length - 1].med)} (${rm[rm.length - 1].nom}). For an electric car, from ${h.prix(rel[0].med)} (${rel[0].nom}) to ${h.prix(rel[rel.length - 1].med)} (${rel[rel.length - 1].nom}).</p>
 <h2>What a département median measures</h2>

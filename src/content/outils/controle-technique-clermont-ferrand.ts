@@ -30,7 +30,7 @@ export default defineGuide({
     title: 'Contrôle technique à Clermont-Ferrand : prix des centres',
     description: 'Prix du contrôle technique à Clermont-Ferrand : chaque centre de la ville et de la métropole, médiane du Puy-de-Dôme, le moins cher, contre-visite et échéance.',
     h1: 'Contrôle technique à Clermont-Ferrand : prix par centre',
-    intro: 'Les prix que les centres clermontois et ceux de la métropole déclarent à la DGCCRF, et ce que cela donne dans un Puy-de-Dôme largement rural.',
+    intro: 'Les prix du contrôle technique à Clermont-Ferrand que les centres clermontois et ceux de la métropole déclarent à la DGCCRF, et ce que cela donne dans un Puy-de-Dôme largement rural.',
     resume: (h) => {
       const x = ville(h, SLUG), v = x.v;
       return `Clermont-Ferrand compte ${x.nb(x.e!.n, 'centre de contrôle technique', 'centres de contrôle technique')} qui déclarent un prix pour les voitures, et la métropole un peu plus : ${h.num(x.e15!.n)} dans un rayon de 15 km. La médiane d’un contrôle essence y est de ${h.prix(x.e!.med)} dans la ville, de ${h.prix(x.e!.min)} à ${h.prix(x.e!.max)} selon le centre, et de ${h.prix(x.e15!.med)} dans le rayon de 15 km. C’est ${x.cmp(x.e!.med, x.natMed)} la médiane nationale (${h.prix(x.natMed)}) et ${x.cmp(x.e!.med, x.depMed)} celle du Puy-de-Dôme (${h.prix(x.depMed)}). Le rayon clermontois concentre à lui seul ${h.pct(part15(h), 0)} des ${h.num(x.dep.centres)} centres du département : ailleurs, de Thiers à Issoire ou dans les monts, l’offre est clairsemée. ${v.moinsCher ? `Le centre le moins cher de la ville déclare ${h.prix(v.moinsCher.p)}.` : ''} Tous ces chiffres sont recalculés chaque jour à partir des déclarations des centres à la DGCCRF (fichier du ${x.fichier}).`;
@@ -57,7 +57,7 @@ ${x.vehTable(`Prix médian par véhicule à Clermont-Ferrand, dans les 15 km et 
 <h2>Les communes de la métropole</h2>
 <p>Le tableau suivant classe par distance les communes voisines qui ont un centre, avec leur médiane et leur tarif le plus bas. Avec des écarts souvent faibles, la proximité de votre domicile ou de votre travail compte autant que le prix.</p>
 ${x.voisinesTable(`Communes autour de Clermont-Ferrand : prix d’un contrôle voiture essence, fichier du ${x.fichier}`)}
-<h2>Quand passer, et après</h2>
+<h2>Quand passer le contrôle technique à Clermont-Ferrand, et après</h2>
 <p>Une voiture passe son premier contrôle dans les six mois qui précèdent son quatrième anniversaire, compté depuis la date de la case B de la carte grise, puis tous les deux ans. Le mini-simulateur ci-dessous calcule votre date limite ; le guide ${h.a('quand-faire-controle-technique', 'quand faire son contrôle technique')} couvre les cas particuliers.</p>
 <!--mini:echeance-->
 <p>${v.cv ? `Après un contrôle défavorable, la contre-visite se déclare à Clermont entre ${h.prix(v.cv.min.med)} et ${h.prix(v.cv.max.med)} en médiane.` : ''} Elle est à faire dans les deux mois, chez n’importe quel centre agréé : voir la page ${h.a('contre-visite', 'contre-visite')}.</p>
@@ -72,7 +72,7 @@ ${x.voisinesTable(`Communes autour de Clermont-Ferrand : prix d’un contrôle v
     title: 'Contrôle technique in Clermont-Ferrand: centre prices',
     description: 'Contrôle technique prices in Clermont-Ferrand: every centre in the city and metro area, the Puy-de-Dôme median, the cheapest, re-checks and when tests are due.',
     h1: 'Contrôle technique in Clermont-Ferrand: price by centre',
-    intro: 'The prices centres in Clermont-Ferrand and its metropolitan area declare to the DGCCRF, and what that means in a largely rural Puy-de-Dôme.',
+    intro: 'The contrôle technique prices centres in Clermont-Ferrand and its metropolitan area declare to the DGCCRF, and what that means in a largely rural Puy-de-Dôme.',
     resume: (h) => {
       const x = ville(h, SLUG), v = x.v;
       return `Clermont-Ferrand has ${x.nb(x.e!.n, 'contrôle technique centre', 'contrôle technique centres')} declaring a car price, and its metropolitan area a few more: ${h.num(x.e15!.n)} within a 15 km radius. The median for a petrol car test (the contrôle technique is France’s compulsory roadworthiness test) is ${h.prix(x.e!.med)} in the city, from ${h.prix(x.e!.min)} to ${h.prix(x.e!.max)} depending on the centre, and ${h.prix(x.e15!.med)} within 15 km. That is ${x.cmp(x.e!.med, x.natMed)} the national median (${h.prix(x.natMed)}) and ${x.cmp(x.e!.med, x.depMed)} the Puy-de-Dôme median (${h.prix(x.depMed)}). The Clermont radius alone holds ${h.pct(part15(h), 0)} of the département’s ${h.num(x.dep.centres)} centres: elsewhere, from Thiers to Issoire or up in the hills, they are thinly spread. ${v.moinsCher ? `The cheapest centre in the city declares ${h.prix(v.moinsCher.p)}.` : ''} All these figures are recalculated every day from the centres’ declarations to the DGCCRF (file of ${x.fichier}).`;
@@ -99,7 +99,7 @@ ${x.vehTable(`Median price by vehicle in Clermont-Ferrand, within 15 km and in F
 <h2>The towns of the metropolitan area</h2>
 <p>The next table lists neighbouring towns with a centre by distance, with their median and lowest price. With gaps that are often small, being close to home or work matters as much as the price.</p>
 ${x.voisinesTable(`Towns around Clermont-Ferrand: price of a petrol car test, file of ${x.fichier}`)}
-<h2>When to go, and what comes next</h2>
+<h2>When to book a contrôle technique in Clermont-Ferrand, and what comes next</h2>
 <p>A car takes its first test in the six months before its fourth anniversary, counted from the date in box B of the registration certificate (carte grise), then every two years. The mini calculator below works out your deadline; the guide on ${h.a('quand-faire-controle-technique', 'when the test is due')} covers special cases.</p>
 <!--mini:echeance-->
 <p>${v.cv ? `After a failed test, the re-inspection (contre-visite) is declared in Clermont between ${h.prix(v.cv.min.med)} and ${h.prix(v.cv.max.med)} at the median.` : ''} It must be done within two months, at any approved centre: see the ${h.a('contre-visite', 're-inspection page')}.</p>

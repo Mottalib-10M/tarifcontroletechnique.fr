@@ -24,7 +24,7 @@ export default defineGuide({
     title: 'Contrôle technique voiture électrique : prix et supplément',
     description: 'Contrôle technique d’une voiture électrique ou hybride en 2026 : prix par centre, supplément sur l’essence, centres au prix unique, GPL et GNV, département.',
     h1: 'Contrôle technique électrique et hybride : le vrai prix',
-    intro: 'Beaucoup de centres facturent plus cher l’électrique et l’hybride. Voici lesquels, de combien, et ceux qui appliquent le même prix.',
+    intro: 'Beaucoup de centres facturent plus cher le contrôle technique d’une voiture électrique ou hybride. Voici lesquels, de combien, et ceux qui appliquent le même prix.',
     resume: (h) => {
       const s = S(h), n = N(h);
       return `Le contrôle technique d’une voiture électrique coûte ${h.prix(s.el.med)} en médiane en France, celui d’une hybride ${h.prix(s.h.med)}, contre ${h.prix(s.e.med)} pour une voiture essence, d’après les prix déclarés par les centres dans le fichier public de la DGCCRF du ${h.date(h.S.meta.fichier)}. ${h.pct(n.elecPlusCher, 0)} des centres facturent l’électrique plus cher que l’essence. Aucune règle ne l’impose : la liste des points vérifiés est la même, et une électrique n’a pas d’émissions à l’échappement à mesurer. C’est donc un choix commercial du centre, et il est évitable : ${h.pct(1 - n.elecPlusCher, 0)} des centres ne facturent aucun supplément pour l’électrique. L’outil ci-dessus s’ouvre sur la catégorie « Voiture électrique » et classe les centres par prix autour de votre commune ; changez de catégorie pour comparer avec l’essence ou l’hybride dans les mêmes centres. Le gaz (GPL, GNV) est plus cher dans ${h.pct(n.gazPlusCher, 0)} des centres, cette fois pour une raison technique : l’installation est contrôlée en plus.`;
@@ -41,7 +41,7 @@ export default defineGuide({
     body: (h) => {
       const s = S(h), n = N(h), ec = ecarts(h);
       const top = ec.slice(-4).reverse().map((x) => `${x.nom} (+${h.prix(x.x)})`).join(', ');
-      return `<h2>Le supplément, centre par centre</h2>
+      return `<h2>Contrôle technique d’une voiture électrique : le supplément, centre par centre</h2>
 <p>Le fichier public des prix distingue cinq motorisations pour une voiture : essence, diesel, hybride, électrique et gaz. Chaque centre y déclare un prix pour chacune. En comparant les deux colonnes d’un même centre, on voit qui facture un supplément : ${h.pct(n.elecPlusCher, 0)} des centres demandent plus pour une électrique que pour une essence. La médiane nationale passe de ${h.prix(s.e.med)} à ${h.prix(s.el.med)}, et l’écart dépasse parfois vingt euros dans un même centre.</p>
 <p>Dans l’outil, la catégorie « Voiture électrique » est présélectionnée. Pour repérer les centres au tarif unique, passez de « Voiture électrique » à « Voiture essence » : ceux dont le prix ne bouge pas ne facturent aucun supplément. Classés par prix, ils remontent souvent en tête.</p>
 <h2>Un examen sans mesure de pollution</h2>
@@ -66,7 +66,7 @@ export default defineGuide({
     title: 'Electric car contrôle technique in France: the surcharge',
     description: 'The contrôle technique for an electric or hybrid car in 2026: price by centre, the surcharge over petrol, centres with one price, LPG and CNG, by département.',
     h1: 'Electric and hybrid contrôle technique: the real price',
-    intro: 'Many centres charge more for electric and hybrid cars. Here is which ones, by how much, and those that charge the same.',
+    intro: 'Many centres charge more for the contrôle technique of electric and hybrid cars. Here is which ones, by how much, and those that charge the same.',
     resume: (h) => {
       const s = S(h), n = N(h);
       return `A contrôle technique for an electric car costs ${h.prix(s.el.med)} at the median in France and ${h.prix(s.h.med)} for a hybrid, against ${h.prix(s.e.med)} for a petrol car, according to the prices centres declare in the DGCCRF’s public file of ${h.date(h.S.meta.fichier)}. ${h.pct(n.elecPlusCher, 0)} of centres charge more for an electric car than for a petrol one. No rule requires it: the list of items checked is the same, and an electric car has no exhaust emissions to measure. It is a commercial choice by the centre, and it can be avoided: ${h.pct(1 - n.elecPlusCher, 0)} of centres add no surcharge for electric cars. The tool above opens on “Electric car” and ranks centres by price around your town; switch category to compare with petrol or hybrid at the same centres. Gas (LPG, CNG) costs more at ${h.pct(n.gazPlusCher, 0)} of centres, this time for a technical reason: the installation is checked too.`;
@@ -83,7 +83,7 @@ export default defineGuide({
     body: (h) => {
       const s = S(h), n = N(h), ec = ecarts(h);
       const top = ec.slice(-4).reverse().map((x) => `${x.nom} (+${h.prix(x.x)})`).join(', ');
-      return `<h2>The surcharge, centre by centre</h2>
+      return `<h2>Electric car contrôle technique: the surcharge, centre by centre</h2>
 <p>The public price file separates five engine types for a car: petrol, diesel, hybrid, electric and gas. Every centre declares a price for each. Comparing the two columns for the same centre shows who adds a surcharge: ${h.pct(n.elecPlusCher, 0)} of centres charge more for an electric car than for a petrol one. The national median goes from ${h.prix(s.e.med)} to ${h.prix(s.el.med)}, and the gap sometimes exceeds twenty euros within one centre.</p>
 <p>In the tool, “Electric car” is preselected. To spot single-price centres, switch from “Electric car” to “Petrol car”: those whose price does not move add no surcharge. Sorted by price, they often come out on top.</p>
 <h2>A test without an emissions check</h2>

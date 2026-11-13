@@ -16,7 +16,7 @@ export default defineGuide({
     title: 'Contrôle technique pour vendre sa voiture : règles 2026',
     description: 'Contrôle technique et vente d’occasion en 2026 : moins de 6 mois, voiture de plus de 4 ans, moto de plus de 5 ans, contre-visite, vente en l’état et prix moyen.',
     h1: 'Vendre sa voiture : le contrôle technique de moins de 6 mois',
-    intro: 'Dans quels cas un contrôle est exigé pour vendre, combien de temps il reste valable, et que faire s’il est défavorable.',
+    intro: 'Dans quels cas un contrôle technique est exigé pour vendre sa voiture, combien de temps il reste valable, et que faire s’il est défavorable.',
     resume: (h) => {
       const n = N(h);
       return `Pour vendre à un particulier une voiture, une camionnette ou un camping-car de 3,5 tonnes au plus qui a plus de quatre ans, le vendeur doit remettre à l’acheteur la preuve d’un contrôle technique de moins de six mois. Le délai se compte jusqu’au jour où l’acheteur dépose sa demande de carte grise, pas jusqu’au jour de la vente : un contrôle fait cinq mois et demi avant la vente laisse très peu de marge. Pour une moto, un scooter ou un quad, la règle s’applique depuis le 15 avril 2024 aux véhicules de plus de cinq ans. Aucun contrôle n’est exigé pour une vente à un garagiste ou à un négociant. Si le contrôle est défavorable pour une défaillance majeure, la voiture peut être vendue en l’état dans les deux mois, l’acheteur faisant la contre-visite ; une défaillance critique impose de réparer et de passer la contre-visite avant de vendre. Le contrôle coûte ${h.prix(n.s.e.med)} en médiane pour une voiture et ${h.prix(n.s.m.med)} pour une moto, d’après le fichier des prix du ${h.date(h.S.meta.fichier)}.`;
@@ -56,7 +56,7 @@ export default defineGuide({
     title: 'Contrôle technique to sell a car in France: 2026 rules',
     description: 'Contrôle technique when selling a used vehicle in France: under 6 months old, cars over 4 years, motorbikes over 5, re-inspection, selling as is, and the price.',
     h1: 'Selling a car in France: the test under six months old',
-    intro: 'When a test is required to sell, how long it stays valid, and what to do if it is a fail.',
+    intro: 'When a contrôle technique is required to sell a car in France, how long it stays valid, and what to do if it is a fail.',
     resume: (h) => {
       const n = N(h);
       return `To sell a car, a van or a motorhome of up to 3.5 tonnes that is more than four years old to a private buyer in France, the seller must give the buyer proof of a contrôle technique less than six months old. The six months run until the day the buyer applies for the new registration certificate (carte grise), not until the day of sale: a test done five and a half months before the sale leaves very little margin. For a motorbike, scooter or quad, the rule has applied since 15 April 2024 to vehicles over five years old. No test is needed when selling to a garage or dealer. If the test is a fail for a major defect, the car may be sold as it is within two months, with the buyer doing the re-inspection; a critical defect means repairing and passing the re-inspection before selling. The test costs ${h.prix(n.s.e.med)} at the median for a car and ${h.prix(n.s.m.med)} for a motorbike, according to the price file of ${h.date(h.S.meta.fichier)}.`;
@@ -83,7 +83,7 @@ export default defineGuide({
 <p>To reassure the buyer, the Interior Ministry’s free HistoVec service produces a report on the vehicle’s administrative history, test results included. Sharing it before the sale heads off many arguments about mileage or past claims.</p>
 <h2>Motorbike, scooter, quad: the same rules with a five-year threshold</h2>
 <p>Since 2024, a motorised two-wheeler over five years old is sold with a test under six months old, under the same mechanism as a car. Because first tests for two-wheelers are staggered by year of registration, many motorbikes have never been tested yet: for them, the test before the sale will be the first. Fewer centres are equipped for two-wheelers, ${h.num(n.centresMoto)} across France; the ${h.a('controle-technique-moto', 'motorcycle page')} finds the nearest ones and their prices, ${h.prix(n.s.m.med)} at the median.</p>
-<h2>Testing before a sale: what it costs</h2>
+<h2>A contrôle technique to sell your car: what it costs</h2>
 <p>The pre-sale test is paid by the seller, at the price the centre displays. The median for a petrol or diesel car test is ${h.prix(n.s.e.med)}, but one centre in ten is at ${h.prix(n.s.e.p10)} or less. Since a sale rarely lets you pick your moment, comparing centres near you is the only way to pay less. A free re-check at the same centre is worth more here than elsewhere: buyers are wary of a vehicle sold “as it is”.</p>
 <!--mini:devis-->
 <p>One last tip: a recent pass is a selling point. It reassures the buyer about the brakes, tyres and steering, and supports a price closer to the market value. To find your next due date if you end up keeping the vehicle, see ${h.a('quand-faire-controle-technique', 'when the test is due')}.</p>`;
